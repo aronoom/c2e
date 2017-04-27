@@ -1,6 +1,7 @@
 @extends('base')
 
 @section('contenu')
+    @if (!Auth::guest() && Auth::user()->id == $tutoriel->user_id)
 <div class="row">
 		    <div class="justify-content-md-center col-sm-12">
 		    	<br>
@@ -45,9 +46,12 @@
 				</a>
 			</div>
 	</div>
-   @section('javascript')
+       @section('javascript')
 	<script>
 		@include('tinyMCE.config_all_of_tinyMCE')
 	</script>
-   @endsection
+       @endsection
+   @else
+    Erreur car ce tutoriel vous appartient pas :)
+   @endif
 @stop

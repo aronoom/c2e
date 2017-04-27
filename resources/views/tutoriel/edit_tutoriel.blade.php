@@ -5,6 +5,7 @@ Gestion tutoriel
 @section('contenu')
     <br>
     <div class="col-sm-12">
+    @if (!Auth::guest() && Auth::user()->id == $tutoriel->user_id)
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif
@@ -27,5 +28,8 @@ Gestion tutoriel
 		@include('tinyMCE.config_all_of_tinyMCE')
 	</script>
 	@endsection
+    @else
+        Erreur car ce tutoriel vous appartient pas :)
+    @endif
 
 @stop

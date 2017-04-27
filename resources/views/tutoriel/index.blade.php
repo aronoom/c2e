@@ -18,9 +18,11 @@ Gestion Tutoriel
 							<img src="{!! $tutoriel->image !!}" class="img-fluid col-10" alt="">
 							{!! $tutoriel->description !!}
 							{!! link_to_route('tutoriel.show', 'Voir', [$tutoriel->id], ['class' => '']) !!}
-							{!! link_to_route('tutoriel.edit', 'Modifier les Informations du tutoriel', [$tutoriel->id], ['class' => '']) !!}
-							{!! link_to_route('tutoriel.edit_tutoriel', 'Continuer l\'écriture du  tutoriel', [$tutoriel->id], ['class' => '']) !!}
-
+                 
+                                                        @if (!Auth::guest() && Auth::user()->id == $tutoriel->user_id)
+                                                            {!! link_to_route('tutoriel.edit', 'Modifier les Informations du tutoriel', [$tutoriel->id], ['class' => '']) !!}
+                                                            {!! link_to_route('tutoriel.edit_tutoriel', 'Continuer l\'écriture du  tutoriel', [$tutoriel->id], ['class' => '']) !!}
+                                                        @endif
 								{!! Form::open(['method' => 'DELETE', 'route' => ['tutoriel.destroy', $tutoriel->id]]) !!}
 									{!! Form::submit('Supprimer', ['class' => '', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
 								{!! Form::close() !!}
