@@ -9,6 +9,8 @@ use App\Repositories\TutorielRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Niveau;
+use App\Tutoriel;
+
 class TutorielController extends Controller
 {
     protected $nbr_page = 3;
@@ -45,6 +47,7 @@ class TutorielController extends Controller
             }
         }else
           {
+          
             $niveaus   = Niveau::lists('niveau','id');        
             return view('tutoriel.create',compact('niveaus'));
           }
@@ -86,9 +89,16 @@ class TutorielController extends Controller
      */
     public function edit_tutoriel($id)
     {
-        Session::put('tutoriel',$id);
-        $tutoriel = $this->tutorielRepository->getById($id);
-        return view('tutoriel.edit_tutoriel',compact('tutoriel'));
+        if(!Auth::guard(null)->guest() && Auth::user()->id == Tutoriel::find($id)->user_id)
+        {
+            Session::put('tutoriel',$id);
+            $tutoriel = $this->tutorielRepository->getById($id);
+            return view('tutoriel.edit_tutoriel',compact('tutoriel'));
+
+        }else
+        {
+            //envoi d erreur
+        }
     }
     
     /**
@@ -99,10 +109,16 @@ class TutorielController extends Controller
      */
     public function edit($id)
     {
-        $tutoriel = $this->tutorielRepository->getById($id);
-        $niveaus   = Niveau::lists('niveau','id');        
+        if(!Auth::guard(null)->guest() && Auth::user()->id == Tutoriel::find($id)->user_id)
+        {
+            $tutoriel = $this->tutorielRepository->getById($id);
+            $niveaus   = Niveau::lists('niveau','id');        
+            return view('tutoriel.edit',compact('tutoriel','niveaus'));
 
-        return view('tutoriel.edit',compact('tutoriel','niveaus'));
+        }else
+        {
+            //envoi d erreur
+        }
     }
 
     /**
@@ -114,6 +130,7 @@ class TutorielController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $this->tutorielRepository->update($id, $request->all());   
         return redirect('tutoriel')->withOk("L'tutoriel " . $request->input('nom    ') . " a été modifié.");
     }
