@@ -1,8 +1,4 @@
 	{!! Form::open(['url' => 'chapitre', 'method' => 'post', 'class' => 'form-horizontal panel']) !!}	
-							<div class="form-group {!! $errors->has('numero') ? 'has-error' : '' !!}">
-							  	{!! Form::text('numero', null, ['style'=>'width: 100%;','class' => 'form-control', 'placeholder' => 'numero du chapitre']) !!}
-							  	{!! $errors->first('numero', '<small class="help-block">:message</small>') !!}
-							</div>
 							<div class="form-group {!! $errors->has('nom') ? 'has-error' : '' !!}">
 							  	{!! Form::text('nom', null, ['style'=>'width: 100%;','class' => 'form-control', 'placeholder' => 'Nom du chapitre']) !!}
 							  	{!! $errors->first('nom', '<small class="help-block">:message</small>') !!}

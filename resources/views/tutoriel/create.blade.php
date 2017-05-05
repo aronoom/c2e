@@ -14,7 +14,11 @@
 							  	{!! Form::text('nom', null, ['class' => 'form-control', 'placeholder' => 'Nom du tutoriel']) !!}
 							  	{!! $errors->first('nom', '<small class="help-block">:message</small>') !!}
 							</div>
-
+							<div class="form-group {!! $errors->has('Types[]') ? 'has-error' : '' !!}">
+								{!! Form::label('Types[]','niveau du tutoriel') !!}
+							  	{!! Form::select('Types[]',App\Type::lists('nom','id'),null, ['class' => 'form-control', 'placeholder' => '','multiple'=>true]) !!}
+							  	{!! $errors->first('Types[]', '<small class="help-block">:message</small>') !!}
+							</div>
 							<div class="form-group {!! $errors->has('niveau_id') ? 'has-error' : '' !!}">
 								{!! Form::label('niveau_id','niveau du tutoriel') !!}
 							  	{!! Form::select('niveau_id',$niveaus,null, ['class' => 'form-control', 'placeholder' => '']) !!}

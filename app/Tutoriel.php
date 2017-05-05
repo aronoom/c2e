@@ -10,9 +10,7 @@ class Tutoriel extends Model
     public $timestamps = true;
     public function user() 
     {
-
         return $this->belongsTo('App\User');
-
     }
     public function types()
     {

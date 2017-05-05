@@ -50,7 +50,7 @@
         <div>
             @foreach ($tutoriels as $tutoriel)
                 {{ $tutoriel->nom }}<br>
-                {!! substr($tutoriel->introduction, 0,300) !!}{{ strlen($tutoriel->introduction) > 300? ".....":" " }}
+                {!! substr($tutoriel->description, 0,300) !!} {{ strlen($tutoriel->description) > 300? ".....":" " }}
                 {!! link_to_route('tutoriel.show', 'Voir', [$tutoriel->id], ['class' => '']) !!}
 
             @endforeach

@@ -48,6 +48,12 @@ class CommentaireController extends Controller
        $inputs = array_merge($request->all(), ['user_id' => Auth::user()->id]);
        $inputs = array_merge($inputs, ['forum_id' => Session::get('forum')]);
        $this->commentaireRepository->store($inputs);
+       if(Auth::user() != null && Auth::user()->id != $forum->user_id)
+        {
+            $user = User::find($forum->user_id);
+            $user->score = $user->score+1;
+            $user->save();
+        }
        return  redirect()->route('forum.show',compact('forum'));
     }
 

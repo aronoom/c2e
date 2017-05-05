@@ -45,7 +45,9 @@ class UserController extends Controller
     public function show($id)
     {
         $user = $this->userRepository->getById($id);
-
+        $user->nbr_vue = $user->nbr_vue+1;
+        $user->score   = $user->score+1;
+        $user->save();  
         return view('user.show',  compact('user'));
     }
 

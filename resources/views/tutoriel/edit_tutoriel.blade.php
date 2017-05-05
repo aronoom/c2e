@@ -14,11 +14,13 @@ Gestion tutoriel
 	   <b>Description</b>
 	   <div class="row">{!! $tutoriel->description !!}</div>
 		<b>Liste des chapitres</b>
+		@php($numero_chapitre = 1)
 		@foreach ($tutoriel->chapitres as $chapitre)
-			<div class="row"><b>chapitre {!! $chapitre->numero !!}</b> :<b>{!! $chapitre->nom!!}</b>
+			<div class="row"><b>chapitre {{ $numero_chapitre }}</b> :<b>{!! $chapitre->nom!!}</b>
 							{!! link_to_route('chapitre.edit_chapitre', 'Continuer l\'écriture du chapitre', [$chapitre->id], ['class' => '']) !!}
-
 			</div>
+			
+			@php($numero_chapitre++) 
 		@endforeach
 		<div class="row"><b>Ajoute de chapitre </b></div>
 		@include('chapitre.create')

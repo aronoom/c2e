@@ -15,7 +15,6 @@ class CreateSectionsTable extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titre',25);
-            $table->integer('numero')->unsigned();
             $table->string('contenu');
             $table->integer('chapitre_id')->unsigned();
             $table->foreign('chapitre_id')

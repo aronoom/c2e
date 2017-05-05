@@ -9,6 +9,7 @@ use App\Repositories\ForumRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Forum;
+use App\Type;
 class ForumController extends Controller
 {
 
@@ -37,7 +38,8 @@ class ForumController extends Controller
      */
     public function create()
     {
-        return view('forum.create');
+        $types   = Type::all();
+        return view('forum.create',compact('types'));
     }
 
     /**
@@ -50,6 +52,10 @@ class ForumController extends Controller
     {
         $inputs = array_merge($request->all(), ['user_id' => Auth::user()->id]);
         $forum = $this->forumRepository->store($inputs);
+        $forum->types()->sync($request->get('Types'));
+        $user = User::find($forum->user_id);
+        $user->score = $user->score+1;
+        $user->save();
         return redirect('forum')->withOk("Le forum " . $forum->sujet . " a été créé.");
     }
 
@@ -61,6 +67,7 @@ class ForumController extends Controller
      */
     public function show($id)
     {
+ 
         $forum = $this->forumRepository->getById($id);
         Session::put('forum',$id);
         return view('forum.show',  compact('forum'));

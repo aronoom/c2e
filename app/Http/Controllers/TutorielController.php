@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Niveau;
 use App\Tutoriel;
+use App\User;
 
 class TutorielController extends Controller
 {
@@ -61,10 +62,16 @@ class TutorielController extends Controller
      */
     public function store(Request $request)
     {
-        $inputs = array_merge($request->all(),['user_id' => Auth::user()->id]);                
+        $id = Auth::user()->id;
+        $inputs = array_merge($request->all(),['user_id' => $id]);                
        // $inputs = array_merge($inputs,['image' => $this->tutorielRepository->save_image($request->all()['image_fichier'])]);
-    
-        $this->tutorielRepository->store($inputs);
+        // $user = User::find($id);
+        // $user->score = $user->score+1;
+        // $user->save();
+        
+        $tutoriel = $this->tutorielRepository->store($inputs);
+        // dd($request->get('Types'));
+        $tutoriel->types()->sync($request->get('Types'));
         return redirect()->route('tutoriel.index');
        
     }
@@ -77,7 +84,15 @@ class TutorielController extends Controller
      */
     public function show($id)
     {
-        $tutoriel = $this->tutorielRepository->getById($id);
+        $tutoriel = Tutoriel::find($id);
+        $tutoriel->nbr_vue = ($tutoriel->nbr_vue+1);
+        $tutoriel->save();
+        if(Auth::user() != null && Auth::user()->id != $tutoriel->user_id)
+        {
+            $user = User::find($tutoriel->user_id);
+            $user->score = $user->score+1;
+            $user->save();
+        }
         return view('tutoriel.show',compact('tutoriel'));
     }
 

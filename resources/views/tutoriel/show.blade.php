@@ -12,17 +12,21 @@ Gestion Tutoriel
     	</div>
     <div class="row">Titre:{!! $tutoriel->nom !!}</div>
 --------------------------------------------------------------------------------
-    <div class="row">{!! $tutoriel->description !!}</div>
-	<div class="row">
+    <div class="row tutoriel">{!! $tutoriel->introduction !!}</div>
+	<div class="row tutoriel">
 		<ul>
+		@php($numero_section = 1)
+		@php($numero_chapitre = 1)
 		@foreach ($tutoriel->chapitres as $chapitre)
-				<li style="display:block;">{!! $chapitre->numero !!}.{!! $chapitre->nom !!}</li>
+				<li style="display:block;">{{ $numero_chapitre }}.{!! $chapitre->nom !!}</li>
 				<ul>
 						@foreach ($chapitre->sections as $section)
-							<li>{!! $section->numero !!}.{!! $section->titre !!}</li>
+							<li>{{ $numero_section }}.{!! $section->titre !!}</li>
+							@php($numero_section++)
 						@endforeach
 				
 				</ul>
+				@php($numero_chapitre++) 
 		@endforeach
 			</ul>
 	</div>

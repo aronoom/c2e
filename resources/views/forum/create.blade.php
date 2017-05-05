@@ -14,9 +14,14 @@
 							  	{!! Form::text('sujet', null, ['class' => 'form-control', 'placeholder' => 'Sujet du forum']) !!}
 							  	{!! $errors->first('sujet', '<small class="help-block">:message</small>') !!}
 							</div>
+							<div class="form-group {!! $errors->has('Type[]') ? 'has-error' : '' !!}">
+								{!! Form::label('Types[]','Catégorie') !!}
+							  	{!! Form::select('Types[]',App\Type::lists('nom','id'),null, ['style'=>'width: 100%;','class' => 'form-control', 'placeholder' => 'Déscription du Forum','multiple'=>true]) !!}
+							  	{!! $errors->first('Types[]', '<small class="help-block">:message</small>') !!}
+							</div>
 							<div class="form-group {!! $errors->has('description') ? 'has-error' : '' !!}">
 								{!! Form::label('description','Déscription du forum') !!}
-							  	{!! Form::textarea('description', null, ['style'=>'width: 100%;','class' => 'form-control', 'placeholder' => 'Déscription du Forum']) !!}
+							  	{!! Form::textarea('description', null, ['style'=>'width: 100%;','class' => 'form-control textarea', 'placeholder' => 'Déscription du Forum']) !!}
 							  	{!! $errors->first('description', '<small class="help-block">:message</small>') !!}
 							</div>
 							
