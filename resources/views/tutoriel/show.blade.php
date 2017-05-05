@@ -18,7 +18,7 @@ Gestion Tutoriel
 		@php($numero_section = 1)
 		@php($numero_chapitre = 1)
 		@foreach ($tutoriel->chapitres as $chapitre)
-				<li style="display:block;">{{ $numero_chapitre }}.{!! $chapitre->nom !!}</li>
+				<li style="display:block;">{!! link_to_route('chapitre.show',$numero_chapitre.$chapitre->nom, [$chapitre->id], ['class' => '']) !!}</li>
 				<ul>
 						@foreach ($chapitre->sections as $section)
 							<li>{{ $numero_section }}.{!! $section->titre !!}</li>

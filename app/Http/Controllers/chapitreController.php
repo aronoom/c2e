@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Repositories\ChapitreRepository;
 use Illuminate\Support\Facades\Session;
-
+use App\Chapitre;
 class ChapitreController extends Controller
 {
     protected $chapitreRepository;
@@ -59,7 +59,8 @@ class ChapitreController extends Controller
      */
     public function show($id)
     {
-        //
+        $chapitre = Chapitre::find($id);
+        return view('chapitre.show',compact('chapitre'));
     }
 
     /**
