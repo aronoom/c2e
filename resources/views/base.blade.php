@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title')</title>
-    @yield('style');
     @include('cssBase.css')
+    @yield('style')
 </head>
 <body>
 	@include('menu.top_menu')
