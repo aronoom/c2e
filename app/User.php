@@ -11,7 +11,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $table = 'Users';
+    protected $table = 'users';
     public function tutoriels() 
     {
         return $this->hasMany('App\Tutoriel');

@@ -1,4 +1,9 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse mb-4 navbar-fixed-top" style="box-shadow: 0px 1px 5px rgba(0,0,0,.5);">
+<nav>
+    <div class="bar_menu"></div>
+    <div class="bar_recherche"></div>
+</nav>  
+
+{{--<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse mb-4 navbar-fixed-top" style="box-shadow: 0px 1px 5px rgba(0,0,0,.5);">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -17,9 +22,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('exercice.index') }}">Exercice</a>
           </li>
-       {{--    <li class="nav-item">
+           <li class="nav-item">
             <a class="nav-link" href="{{ route('projet.index') }}">Projet</a>
-          </li> --}}
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('user.index') }}">Membre</a>
           </li>
@@ -44,3 +49,4 @@
         </form>
       </div>
     </nav>
+    --}}
