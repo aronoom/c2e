@@ -5,7 +5,7 @@
 		    <div class="col-sm-4">
 		    	<br>
 				<div class="panel panel-primary">	
-					<div class="panel-heading" style="text-align: center;border-bottom:1px solid #aaa;">Création d'un utilisateur</div>
+					Création d'un utilisateur
 					<div class="panel-body"> 
 						<div class="col-sm-12">
 							{!! Form::open(['url' => 'user', 'method' => 'post','files'=>true, 'class' => 'form-horizontal panel']) !!}	

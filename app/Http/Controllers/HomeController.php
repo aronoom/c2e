@@ -30,7 +30,7 @@ class HomeController extends Controller
         $user_stars = User::orderBy('score','desc')->skip(0)->take(4)->get();
         $forums     = Forum::orderBy('created_at','desc')->skip(0)->take(4)->get();
         $tutoriels   = Tutoriel::orderBy('created_at','desc')->skip(0)->take(4)->get();
-
+        
         return view('home',compact('user_stars','forums','tutoriels'));
     }
 }
