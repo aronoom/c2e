@@ -1,4 +1,7 @@
 @extends('base')
+@section('style')
+{{ Html::style('css/style_c2e/color_label.css')}}
+@stop
 @section('contenu')
 <div class="row justify-content-md-center">
 		    <div class="col-sm-4">
