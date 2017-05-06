@@ -1,4 +1,4 @@
-{{Html::script('bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js')}}
+{{Html::script('materialize/js/materialize.min.js')}}
 {{Html::script('js/jquery-3.1.1.min.js')}}
 {{Html::script('tinymce/js/tinymce/tinymce.min.js')}}
 {{Html::script('prismjs/js/prism.js')}}
