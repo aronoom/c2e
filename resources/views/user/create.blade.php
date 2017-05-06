@@ -1,5 +1,4 @@
 @extends('base')
-
 @section('contenu')
 <div class="row justify-content-md-center">
 		    <div class="col-sm-4">
@@ -71,4 +70,5 @@
 				</a>
 			</div>
 	</div>
+
 @stop
