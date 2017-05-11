@@ -10,6 +10,6 @@ class Domain extends Model
     protected $fillable = ['terme'];
     function users()
     {
-    	return $this->hasMany('App\User'):
+    	return $this->hasMany('App\User');
     }
 }

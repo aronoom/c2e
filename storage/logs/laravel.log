@@ -6012,3 +6012,42 @@ Stack trace:
 #76 C:\xampp\htdocs\projetc2e\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #77 C:\xampp\htdocs\projetc2e\server.php(21): require_once('C:\\xampp\\htdocs...')
 #78 {main}  
+[2017-05-11 14:49:10] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ':'' in C:\xampp\htdocs\projetc2e\app\Domain.php:13
+Stack trace:
+#0 {main}  
+[2017-05-11 14:51:00] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '}'' in C:\xampp\htdocs\projetc2e\app\Repositories\DomainRepository.php:13
+Stack trace:
+#0 {main}  
+[2017-05-11 14:51:09] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ':'' in C:\xampp\htdocs\projetc2e\app\Domain.php:13
+Stack trace:
+#0 {main}  
+[2017-05-11 14:51:57] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ':'' in C:\xampp\htdocs\projetc2e\app\Repositories\DomainRepository.php:12
+Stack trace:
+#0 {main}  
+[2017-05-11 14:52:03] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ':'' in C:\xampp\htdocs\projetc2e\app\Domain.php:13
+Stack trace:
+#0 {main}  
+[2017-05-11 14:52:13] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected end of file, expecting function (T_FUNCTION)' in C:\xampp\htdocs\projetc2e\app\Repositories\DomainRepository.php:14
+Stack trace:
+#0 {main}  
+[2017-05-11 14:52:18] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function paginate() on null' in C:\xampp\htdocs\projetc2e\app\Repositories\ResourceRepository.php:12
+Stack trace:
+#0 {main}  
+[2017-05-11 14:52:39] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ':'' in C:\xampp\htdocs\projetc2e\app\Domain.php:13
+Stack trace:
+#0 {main}  
+[2017-05-11 14:53:20] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ':'' in C:\xampp\htdocs\projetc2e\app\Domain.php:13
+Stack trace:
+#0 {main}  
+[2017-05-11 14:53:21] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ':'' in C:\xampp\htdocs\projetc2e\app\Domain.php:13
+Stack trace:
+#0 {main}  
+[2017-05-11 14:53:24] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ':'' in C:\xampp\htdocs\projetc2e\app\Domain.php:13
+Stack trace:
+#0 {main}  
+[2017-05-11 14:54:16] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ':'' in C:\xampp\htdocs\projetc2e\app\Domain.php:13
+Stack trace:
+#0 {main}  
+[2017-05-11 14:55:15] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ':'' in C:\xampp\htdocs\projetc2e\app\Domain.php:13
+Stack trace:
+#0 {main}  

@@ -27,7 +27,7 @@ Gestion Catégorie
 
 						<tr>
 							<td>{!! $type_utilisateur->id !!}</td>
-							<td class="text-primary"><strong>{!! $type_utilisateur->nom !!}</strong></td>
+							<td class="text-primary"><strong>{!! $type_utilisateur->terme !!}</strong></td>
 							<td>{!! link_to_route('type_utilisateur.show', 'Voir', [$type_utilisateur->id], ['class' => 'btn btn-success btn-block']) !!}</td>
 							<td>{!! link_to_route('type_utilisateur.edit', 'Modifier', [$type_utilisateur->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
 							<td>

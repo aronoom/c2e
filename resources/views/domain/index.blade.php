@@ -23,15 +23,15 @@ Gestion Catégorie
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($types as $type)
+					@foreach ($domains as $domain)
 
 						<tr>
-							<td>{!! $type->id !!}</td>
-							<td class="text-primary"><strong>{!! $type->nom !!}</strong></td>
-							<td>{!! link_to_route('type.show', 'Voir', [$type->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-							<td>{!! link_to_route('type.edit', 'Modifier', [$type->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
+							<td>{!! $domain->id !!}</td>
+							<td class="text-primary"><strong>{!! $domain->terme !!}</strong></td>
+							<td>{!! link_to_route('domain.show', 'Voir', [$domain->id], ['class' => 'btn btn-success btn-block']) !!}</td>
+							<td>{!! link_to_route('domain.edit', 'Modifier', [$domain->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
 							<td>
-								{!! Form::open(['method' => 'DELETE', 'route' => ['type.destroy', $type->id]]) !!}
+								{!! Form::open(['method' => 'DELETE', 'route' => ['domain.destroy', $domain->id]]) !!}
 									{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet Catégorie ?\')']) !!}
 								{!! Form::close() !!}
 							</td>
@@ -40,7 +40,7 @@ Gestion Catégorie
 	  			</tbody>
 			</table>
 		</div>
-		{!! link_to_route('type.create', 'Ajouter un Catégorie', [], ['class' => 'btn btn-info pull-right']) !!}
+		{!! link_to_route('domain.create', 'Ajouter un Catégorie', [], ['class' => 'btn btn-info pull-right']) !!}
 		{!! $links !!}
 	</div>
 @stop
