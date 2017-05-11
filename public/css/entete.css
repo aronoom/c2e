@@ -106,12 +106,16 @@ input .input-search{
     padding: 10px;
     color: whitesmoke;
     background-color: #232323;
+    border: none;
 }
 @media (min-width: 350px) {
     .input-search{
         display: inline-block;
         width: 300px;
         color: whitesmoke;
+        background-color: #232323;
+        border: none;
+        padding: 10px;
     }
 }
 
