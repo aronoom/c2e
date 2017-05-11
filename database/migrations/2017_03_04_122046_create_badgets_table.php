@@ -15,7 +15,7 @@ class CreateBadgetsTable extends Migration
         Schema::create('badgets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom',25)->unique();
-            $table->string('description',255);
+            $table->mediumText('description');
             $table->string('image',255);
             $table->timestamps();
         });

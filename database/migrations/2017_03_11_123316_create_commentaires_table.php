@@ -14,7 +14,7 @@ class CreateCommentairesTable extends Migration
     {
         Schema::create('commentaires', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('phrase',20000);
+            $table->mediumText('phrase');
             $table->boolean('reponse')->default(false);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')

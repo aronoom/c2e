@@ -20,6 +20,10 @@ class Tutoriel extends Model
     {
         return $this->hasMany('App\Chapitre');
     }
+    public function commentaire_tutoriels()
+    {
+        return $this->hasMany('App\Commentaire_tutoriel');
+    }
     public function niveau()
     {
         return $this->belongsTo('App\Niveau');

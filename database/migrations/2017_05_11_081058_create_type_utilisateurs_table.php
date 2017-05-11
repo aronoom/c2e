@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCorrigesTable extends Migration
+class CreateTypeUtilisateursTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,8 @@ class CreateCorrigesTable extends Migration
      */
     public function up()
     {
-        Schema::create('corriges', function (Blueprint $table) {
+        Schema::create('type_utilisateurs', function (Blueprint $table) {
             $table->increments('id');
-            $table->mediumText('phrase');
-            $table->boolean('valide')->default(false);
-            $table->integer('question_id')->unsigned();
-            $table->foreign('question_id')->references('id')->on('questions')->onDelete('restrict');
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ class CreateCorrigesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('corriges');
+        Schema::drop('type_utilisateurs');
     }
 }

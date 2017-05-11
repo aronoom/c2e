@@ -15,7 +15,7 @@ class CreateTypeDeFichiersTable extends Migration
         Schema::create('type_de_fichiers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom',25);
-            $table->string('description', 255);
+            $table->mediumText('description');
             $table->timestamps();
         });
     }

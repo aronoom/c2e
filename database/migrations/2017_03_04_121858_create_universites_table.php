@@ -15,7 +15,7 @@ class CreateUniversitesTable extends Migration
         Schema::create('universites', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom',40)->unique();
-            $table->string('description',255);
+            $table->mediumText('description');
             $table->timestamps();
         });
     }

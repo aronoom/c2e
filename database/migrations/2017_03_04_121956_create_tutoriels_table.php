@@ -16,7 +16,7 @@ class CreateTutorielsTable extends Migration
             $table->increments('id');
             $table->string('nom', 50);
             $table->string('description',300);
-            $table->string('introduction',20000);
+            $table->mediumText('introduction');
             $table->boolean('valider')->default(false);
             $table->integer('nbr_vue')->unsigned()->default(1);
             $table->integer('user_id')->unsigned();

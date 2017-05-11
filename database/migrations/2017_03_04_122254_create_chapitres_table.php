@@ -15,7 +15,7 @@ class CreateChapitresTable extends Migration
         Schema::create('chapitres', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom',25);
-            $table->string('description',255)->nullable();
+            $table->mediumText('description');
             $table->integer('tutoriel_id')->unsigned();
             $table->foreign('tutoriel_id')
                         ->references('id')

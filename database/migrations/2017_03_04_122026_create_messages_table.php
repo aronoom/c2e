@@ -14,7 +14,7 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('message',255);
+            $table->mediumText('message');
             $table->boolean('vue')->default(true);
             $table->date('date_envoie');
             $table->date('date_vue');
