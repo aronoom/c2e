@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class commentaire_tutoriel extends Model
+class Commentaire_tutoriel extends Model
 {
     protected $table ='commentaire_tutoriels';
     protected $fillable =['phrase','user_id','tutoriel_id'];

@@ -14,6 +14,7 @@ class CreateAnnoncesTable extends Migration
     {
         Schema::create('annonces', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('titre',26);
             $table->mediumText("text");
 
             $table->integer('user_id')->unsigned();
