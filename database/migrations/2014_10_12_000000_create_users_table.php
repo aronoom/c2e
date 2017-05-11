@@ -41,6 +41,13 @@ class CreateUsersTable extends Migration
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
 
+            $table->integer('type_utilisateur_id')->unsigned();
+            $table->foreign('type_utilisateur_id')
+                        ->references('id')
+                        ->on('type_utilisateurs')
+                        ->onDelete('restrict')
+                        ->onUpdate('restrict');
+
             $table->integer('score')->unsigned()->default(1);
             $table->rememberToken();
             $table->timestamps();

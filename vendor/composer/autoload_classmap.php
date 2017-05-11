@@ -32,6 +32,7 @@ return array(
     'CreateTutorielsTable' => $baseDir . '/database/migrations/2017_03_04_121956_create_tutoriels_table.php',
     'CreateTypeDExercicesTable' => $baseDir . '/database/migrations/2017_03_04_122628_create_type_d_exercices_table.php',
     'CreateTypeDeFichiersTable' => $baseDir . '/database/migrations/2017_03_04_122717_create_type_de_fichiers_table.php',
+    'CreateTypeUtilisateursTable' => $baseDir . '/database/migrations/2017_05_11_081058_create_type_utilisateurs_table.php',
     'CreateTypesTable' => $baseDir . '/database/migrations/2017_03_04_122213_create_types_table.php',
     'CreateUniversitesTable' => $baseDir . '/database/migrations/2017_03_04_121858_create_universites_table.php',
     'CreateUserBadget' => $baseDir . '/database/migrations/2017_03_05_045450_create_user_badget.php',

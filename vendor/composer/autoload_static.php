@@ -341,6 +341,7 @@ class ComposerStaticInite6b27c71fd6285f89f46272f6ed10a52
         'CreateTutorielsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_04_121956_create_tutoriels_table.php',
         'CreateTypeDExercicesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_04_122628_create_type_d_exercices_table.php',
         'CreateTypeDeFichiersTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_04_122717_create_type_de_fichiers_table.php',
+        'CreateTypeUtilisateursTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_11_081058_create_type_utilisateurs_table.php',
         'CreateTypesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_04_122213_create_types_table.php',
         'CreateUniversitesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_04_121858_create_universites_table.php',
         'CreateUserBadget' => __DIR__ . '/../..' . '/database/migrations/2017_03_05_045450_create_user_badget.php',
