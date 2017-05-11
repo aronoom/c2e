@@ -80,6 +80,9 @@
     position: relative;
     left: 0;
     top: 9px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
 }
 .menu-icon{
     display: inline-block;
@@ -96,19 +99,25 @@
     margin-bottom: 4px;
     line-height: 36px;
 }
-.input-search{
+input .input-search{
+    display: inline-block;
     width: 200px;
     border: none;
-    padding-left: 10px;
+    padding: 10px;
+    color: whitesmoke;
     background-color: #232323;
 }
 @media (min-width: 350px) {
     .input-search{
+        display: inline-block;
         width: 300px;
+        color: whitesmoke;
     }
 }
 
 .img-loupe{
+    display: inline-block;
+    position: relative;
     float: right;
     padding: 7px;
 }
