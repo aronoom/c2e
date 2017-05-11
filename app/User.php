@@ -30,6 +30,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\universite','user_universite');
     }
+    public function domain()
+    {
+        return $this->belongsTo('App\Domain');
+    }
     public function badgets()
     {
         return $this->belongsToMany('App\badget','user_badget');

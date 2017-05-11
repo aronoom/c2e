@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
             $table->engine = "InnoDB";
             $table->increments('id');
             $table->string('name');
+            $table->prenom("prenom");
             $table->string('email')->unique();
             $table->string('login',30)->unique();
             $table->string('password',255);
@@ -32,6 +33,14 @@ class CreateUsersTable extends Migration
             $table->string('image', 255);
             $table->tinyInteger('nbr_vue')->default(0);
             $table->boolean('confirmed')->default(false);
+
+            $table->integer('domain_id')->unsigned();
+            $table->foreign('domain_id')
+                        ->references('id')
+                        ->on('domains')
+                        ->onDelete('restrict')
+                        ->onUpdate('restrict');
+
             $table->integer('score')->unsigned()->default(1);
             $table->rememberToken();
             $table->timestamps();
