@@ -316,6 +316,7 @@ class ComposerStaticInite6b27c71fd6285f89f46272f6ed10a52
 
     public static $classMap = array (
         'AppareilInscrit' => __DIR__ . '/../..' . '/database/migrations/2017_03_11_123137_appareil_inscrit.php',
+        'CreateAnnoncesTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_11_075348_create_annonces_table.php',
         'CreateAppareilsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_04_122101_create_appareils_table.php',
         'CreateBadgetsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_04_122046_create_badgets_table.php',
         'CreateChapitresTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_04_122254_create_chapitres_table.php',

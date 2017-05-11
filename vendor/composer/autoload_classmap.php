@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AppareilInscrit' => $baseDir . '/database/migrations/2017_03_11_123137_appareil_inscrit.php',
+    'CreateAnnoncesTable' => $baseDir . '/database/migrations/2017_05_11_075348_create_annonces_table.php',
     'CreateAppareilsTable' => $baseDir . '/database/migrations/2017_03_04_122101_create_appareils_table.php',
     'CreateBadgetsTable' => $baseDir . '/database/migrations/2017_03_04_122046_create_badgets_table.php',
     'CreateChapitresTable' => $baseDir . '/database/migrations/2017_03_04_122254_create_chapitres_table.php',
