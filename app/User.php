@@ -48,8 +48,9 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name', 'email', 'password','login','telephone','adresse','Motif_insrciption','date_inscription',
-        'date_activation','nombre_de_connection','mode_economique','connecter','nbr_vue','image'
+        'date_activation','nombre_de_connection','mode_economique','connecter','nbr_vue','image','domain_id','type_utilisateur_id'
     ];
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);

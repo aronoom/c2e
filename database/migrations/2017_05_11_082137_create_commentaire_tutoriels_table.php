@@ -20,6 +20,7 @@ class CreateCommentaireTutorielsTable extends Migration
                         ->references('id')
                         ->on('users')
                         ->onDelete('restrict')
+                         ->onUpdate('restrict');
             $table->integer('tutoriel_id')->unsigned();
             $table->foreign('tutoriel_id')
                         ->references('id')

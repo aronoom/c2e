@@ -10,10 +10,17 @@
 
 		{!! Form::open(['url' => 'user', 'method' => 'post','files'=>true, 'class' => 'form-horizontal panel']) !!}
 		<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
-			{!! Form::label('name','Nom et Prénom') !!}
-			{!! Form::text('name', null, ['class' => 'form', 'placeholder' => 'JEAN Rakoto']) !!}
+			{!! Form::label('name','Nom') !!}
+			{!! Form::text('name', null, ['class' => 'form', 'placeholder' => 'Dupont']) !!}
 			{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
 		</div>
+		<div class="form-group {!! $errors->has('prenom') ? 'has-error' : '' !!}">
+			{!! Form::label('prenom','Prénom') !!}
+			{!! Form::text('prenom', null, ['class' => 'form', 'placeholder' => 'Jean']) !!}
+			{!! $errors->first('prenom', '<small class="help-block">:message</small>') !!}
+		</div>
+
+
 		<div class="form-group {!! $errors->has('image_fichier') ? 'has-error' : '' !!}">
 			{!! Form::label('image_fichier','Photo de votre avatar') !!}
 			{!! Form::file('image_fichier', null, ['class' => 'form-control', 'placeholder' => 'image_fichier']) !!}
