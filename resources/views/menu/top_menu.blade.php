@@ -8,7 +8,11 @@
                 <li><a href="{{ route('tutoriel.index') }}">Tutoriel</a></li>
                 <li><a href="{{ route('user.index') }}">Membre</a></li>
                 <li><a href="{{ route('forum.index') }}">Discussion</a></li>
-                <li><img class="img-user" src="{!! asset('image/entete/user.png') !!}"></li>
+                @if(Auth::guest())
+                <li><img class="img-user" src=" {!! asset('images_users/Luc6AarabW.jpg') !!}"></li>
+                @else
+                <li><img class="img-user" src="{!! Auth::user()->image !!}"></li>
+                @endif
             </ul>
             <ul class="menu-list menu-min">
                 <li><img class="img-user" src="{!! asset('image/entete/user.png') !!}"></li>
