@@ -320,6 +320,7 @@ class ComposerStaticInite6b27c71fd6285f89f46272f6ed10a52
         'CreateAppareilsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_04_122101_create_appareils_table.php',
         'CreateBadgetsTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_04_122046_create_badgets_table.php',
         'CreateChapitresTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_04_122254_create_chapitres_table.php',
+        'CreateCommentaireTutorielsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_11_082137_create_commentaire_tutoriels_table.php',
         'CreateCommentairesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_11_123316_create_commentaires_table.php',
         'CreateCorrigesTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_11_122453_create_corriges_table.php',
         'CreateDomainsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_11_073736_create_domains_table.php',

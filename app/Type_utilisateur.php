@@ -8,7 +8,7 @@ class Type_utilisateur extends Model
 {
     protected $table = 'types_utilisateurs';
     protected $fillable = ['terme'];
-    function users()
+    public function users()
     {
     	return $this->hasMany('App\User');
     }

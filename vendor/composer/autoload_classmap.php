@@ -11,6 +11,7 @@ return array(
     'CreateAppareilsTable' => $baseDir . '/database/migrations/2017_03_04_122101_create_appareils_table.php',
     'CreateBadgetsTable' => $baseDir . '/database/migrations/2017_03_04_122046_create_badgets_table.php',
     'CreateChapitresTable' => $baseDir . '/database/migrations/2017_03_04_122254_create_chapitres_table.php',
+    'CreateCommentaireTutorielsTable' => $baseDir . '/database/migrations/2017_05_11_082137_create_commentaire_tutoriels_table.php',
     'CreateCommentairesTable' => $baseDir . '/database/migrations/2017_03_11_123316_create_commentaires_table.php',
     'CreateCorrigesTable' => $baseDir . '/database/migrations/2017_03_11_122453_create_corriges_table.php',
     'CreateDomainsTable' => $baseDir . '/database/migrations/2017_05_11_073736_create_domains_table.php',
