@@ -9,7 +9,7 @@ form{
         width: 60%;
     }
 }
-input, textarea {
+input, textarea, select {
     display: block;
     background-color: rgba(0, 0, 0, .1);
     color: black;
@@ -45,8 +45,11 @@ label{
     background-color: #0d47a1;
 }
 
-.content-btn{
-    width: 95%;
+/*
+    Container
+ */
+.content-btn, .content-input{
+    width: 90%;
 }
 
 /*
