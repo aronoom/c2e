@@ -15,7 +15,7 @@ class CreateDossiersTable extends Migration
         Schema::create('dossiers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom',25);
-            $table->string('description',255)->default("-------/-------")->nullable();
+            $table->mediumText('description')->default("-------/-------");
             $table->integer('projet_id')->unsigned();
             $table->foreign('projet_id')
                         ->references('id')

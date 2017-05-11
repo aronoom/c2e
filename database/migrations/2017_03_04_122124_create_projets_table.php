@@ -15,7 +15,7 @@ class CreateProjetsTable extends Migration
         Schema::create('projets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom',25);
-            $table->string('description', 255);
+            $table->mediumText('description');
             $table->integer('nbr_vue')->unsigned()->default(1);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')

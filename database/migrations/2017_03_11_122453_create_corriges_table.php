@@ -14,7 +14,7 @@ class CreateCorrigesTable extends Migration
     {
         Schema::create('corriges', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('phrase',255);
+            $table->mediumText('phrase');
             $table->boolean('valide')->default(false);
             $table->integer('question_id')->unsigned();
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('restrict');

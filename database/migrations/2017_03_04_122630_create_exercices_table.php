@@ -15,7 +15,7 @@ class CreateExercicesTable extends Migration
         Schema::create('exercices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom', 25);
-            $table->string('description',255);
+            $table->mediumText('description');
             $table->boolean('valide')->default(false);
             $table->integer('nbr_vue')->unsigned()->default(0);
             $table->integer('type_d_exercice_id')->unsigned();

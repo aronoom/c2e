@@ -14,7 +14,7 @@ class CreateReponsesTable extends Migration
     {
         Schema::create('reponses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('phrase', 255);
+            $table->mediumText('phrase');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
                         ->references('id')

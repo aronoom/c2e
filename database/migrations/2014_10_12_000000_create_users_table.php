@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password',255);
             $table->string('telephone',13);
             $table->string('adresse',150);
-            $table->string('Motif_insrciption',255);
+            $table->mediumText('motif_insrciption');
             $table->date('date_inscription');
             $table->date('date_activation')->nullable();
             $table->tinyInteger('nombre_de_connection')->default(1);
