@@ -33,6 +33,7 @@ Route::resource('exercice','ExerciceController');
 Route::resource('question','QuestionController');
 Route::resource('corrige','CorrigeController');
 Route::resource('projet','ProjetController');
+Route::resource('type_utilisateur','Type_utilisateurController');
 Route::auth();
 
 Route::get('/', 'HomeController@index')->name('home');

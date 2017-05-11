@@ -6,7 +6,7 @@ use App\Http\Requests\User\UserCreateRequest;
 use App\Http\Requests\User\UserUpdateRequest;
 
 use App\Repositories\UserRepository;
-
+use App\Type_utilisateur;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -37,6 +37,8 @@ class UserController extends Controller
     {
         $this->setAdmin($request);
         $inputs = array_merge($request->all(),['image' => $this->userRepository->save_image($request->all()['image_fichier'])]);
+        $inputs = array_merge($inputs,['domain_id'=>1]);
+        $inputs = array_merge($inputs,['type_utilisateur_id'=>Type_utilisateur::where('terme','simple')->first()->id]);
         $user = $this->userRepository->store($inputs);
 
         return redirect('user')->withOk("L'utilisateur " . $user->name . " a été créé.");

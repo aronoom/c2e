@@ -21,7 +21,7 @@ Gestion Utilisateur
                             <img class="img-membre" src="{{ $user->image }}" alt="">
                             <div class="container-membre-info">
                                 <span class="label-nom">{{ $user->name }}</span><br/>
-                                <span class="label-nom">Kotozafy</span><br/>
+                                <span class="label-nom">{{ $user->prenom }}</span><br/>
                                 <span class="label-domaine">Génie logiciel et Base de Donnée</span>
                                 <div class="list-badge">
                                     <img src="{!! asset('image/badge/php.png') !!}" alt="php">

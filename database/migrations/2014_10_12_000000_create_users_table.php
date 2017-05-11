@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
             $table->engine = "InnoDB";
             $table->increments('id');
             $table->string('name');
-            $table->prenom("prenom");
+            $table->string("prenom");
             $table->string('email')->unique();
             $table->string('login',30)->unique();
             $table->string('password',255);

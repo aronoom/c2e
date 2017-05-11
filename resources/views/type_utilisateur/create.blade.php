@@ -8,7 +8,7 @@
 					<div class="panel-heading" style="text-align: center;border-bottom:1px solid #aaa;">Création d'un type d'utilisateur</div>
 					<div class="panel-body"> 
 						<div class="col-sm-12">
-							{!! Form::open(['url' => 'tutoriel_type', 'method' => 'post', 'class' => 'form-horizontal panel']) !!}	
+							{!! Form::open(['url' => 'type_utilisateur', 'method' => 'post', 'class' => 'form-horizontal panel']) !!}	
 							<div class="form-group {!! $errors->has('terme') ? 'has-error' : '' !!}">
 								{!! Form::label('terme','terme du catégorie') !!}
 							  	{!! Form::text('terme', null, ['class' => 'form-control', 'placeholder' => 'terme']) !!}
