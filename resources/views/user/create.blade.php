@@ -54,20 +54,15 @@
 		<div class="form-group">
 			{!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirmation mot de passe']) !!}
 		</div>
-		<div class="form-group">
-			<div class="checkbox">
-				<label>
-					{!! Form::checkbox('admin', 1, null) !!} Administrateur
-				</label>
+		<div class="content-btn ">
+			<div class="pull-right">
+				{!! Form::submit('Envoyer', ['class' => 'btn btn-primary']) !!}
+				<a href="javascript:history.back()" class="btn ">
+					<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+				</a>
 			</div>
 		</div>
-		<div class="pull-right">
-			{!! Form::submit('Envoyer', ['class' => 'btn btn-primary']) !!}
-			<a href="javascript:history.back()" class="btn ">
-				<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-			</a>
-			{!! Form::close() !!}
-		</div>
+		{!! Form::close() !!}
 	</div>
 
 @stop

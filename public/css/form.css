@@ -35,16 +35,18 @@ label{
     color: whitesmoke;
     background-color: rgba(0,0,0,.2);
     border: none;
+    font-size:12pt;
 }
 .btn a{
     padding: 0px 10px 0px 10px;
+
 }
 .btn-primary{
     background-color: #0d47a1;
 }
 
 .content-btn{
-    padding:0px 8% 0px 8%;
+    width: 95%;
 }
 
 /*

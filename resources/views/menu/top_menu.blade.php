@@ -9,14 +9,22 @@
                 <li><a href="{{ route('tutoriel.index') }}">Tutoriel</a></li>
                 <li><a href="{{ route('user.index') }}">Membre</a></li>
                 <li><a href="{{ route('forum.index') }}">Discussion</a></li>
-                @if(Auth::guest())
-                <li><img class="img-user" src=" {!! asset('images_users/Luc6AarabW.jpg') !!}"></li>
-                @else
-                <li><img class="img-user" src="{!! Auth::user()->image !!}"></li>
-                @endif
+                <li>
+                    @if(Auth::guest())
+                        <img class="img-user" src=" {!! asset('images_users/Luc6AarabW.jpg') !!}">
+                    @else
+                        <img class="img-user" src="{!! asset(Auth::user()->image) !!}">
+                    @endif
+                </li>
             </ul>
             <ul class="menu-list menu-min">
-                <li><img class="img-user" src="{!! asset('image/entete/user.png') !!}"></li>
+                <li>
+                    @if(Auth::guest())
+                        <img class="img-user" src=" {!! asset('images_users/Luc6AarabW.jpg') !!}">
+                    @else
+                        <img class="img-user" src="{!! asset(Auth::user()->image) !!}">
+                    @endif
+                </li>
                 <li><img class="menu-icon" src="{!! asset('image/entete/menu.ico.png') !!}"/></li>
             </ul>
         </div>

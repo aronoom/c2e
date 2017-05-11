@@ -1,37 +1,42 @@
 @extends('base')
 @section('title')
-Gestion Tutoriel
+	c2e | tuto
 @endsection
+
+@section('style')
+	{{ Html::style('css/tutoriel.css') }}
+	{{ Html::style('css/form.css')}}
+@endsection
+
 @section('contenu')
-    <br>
-    <div class="col-sm-12">
+	<div class="container">
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">Liste des Tutoriels</h3>
-			</div>
-					@foreach ($tutoriels as $tutoriel)
-						{!! $tutoriel->id !!}
-							{!! $tutoriel->nom !!}
-							<img src="{!! $tutoriel->image !!}" class="img-fluid col-10" alt="">
-						<div class="description">	
-							{!! $tutoriel->description !!}
-							{!! link_to_route('tutoriel.show', 'Voir', [$tutoriel->id], ['class' => '']) !!}
-                 
-                                                        @if (!Auth::guest() && Auth::user()->id == $tutoriel->user_id)
-                                                            {!! link_to_route('tutoriel.edit', 'Modifier les Informations du tutoriel', [$tutoriel->id], ['class' => '']) !!}
-                                                            {!! link_to_route('tutoriel.edit_tutoriel', 'Continuer l\'écriture du  tutoriel', [$tutoriel->id], ['class' => '']) !!}
-                                                        @endif
-								{!! Form::open(['method' => 'DELETE', 'route' => ['tutoriel.destroy', $tutoriel->id]]) !!}
-									{!! Form::submit('Supprimer', ['class' => '', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
-								{!! Form::close() !!}
+
+		<h3>
+			<a href="#tuto" class="ancre" id="tuto"></a>Les tutoriels
+			{!! link_to_route('tutoriel.create', 'Créer un tutoriel', [], ['class' => 'btn btn-primary pull-right']) !!}
+		</h3>
+		@foreach ($tutoriels as $tutoriel)
+			<div class="section-tuto-content">
+				<div class="panel-tuto">
+					<img class="img-tuto" src="{!! asset('image/tuto/c.png') !!}" alt="">
+					<div class="container-tuto-info">
+						<h4>
+							<img class="img-tuto-mini" src="{!! asset('image/badge/php.png') !!}"/>
+							{{ link_to_route('tutoriel.show', $tutoriel->nom, [$tutoriel->id], ['class' => 'link-voir-tuto']) }}
+						</h4>
+						<p class="tuto-description">
+							{!! substr($tutoriel->description, 0,200) !!} {{ strlen($tutoriel->description) > 200? ".....":" " }}
+						</p>
+						<div>
+							<span class="auteur-tuto"><span class="nom-auteur"> RAMANITRA Aro Nomeniaina</span>,</span>
 						</div>
-					@endforeach
-	  			
-		</div>
-		{!! link_to_route('tutoriel.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-info pull-right']) !!}
+					</div>
+				</div>
+			</div>
+		@endforeach
 		{!! $links !!}
 	</div>
 @stop
