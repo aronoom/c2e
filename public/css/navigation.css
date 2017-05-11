@@ -1,0 +1,40 @@
+/*
+    Navigation
+ */
+.navigation{
+    float: right;
+    width: 30%;
+}
+.navigation >ul{
+    padding-left: 10px;
+    list-style: none;
+}
+.navigation > ul > li{
+    padding: 5px 5px 20px 5px;
+}
+.navigation > ul > li >ul{
+    list-style: none;
+    padding-left: 0;
+}
+.navigation > ul > li >ul >li{
+    padding: 2px 2px 2px 20px;
+    font-size: 11pt;
+}
+.nav-active{
+    border-left: 5px solid #ab1010;
+    position: relative;
+    padding-left: 25px !important;
+    left: -10px;
+    color: #ab1010;
+}
+.panel-user{
+    display: inline-block;
+    height: 400px;
+}
+
+.navigation > ul > li > a:hover{
+    color: #ab1010;
+}
+.navigation > ul > li >ul > li :hover{
+    color: #ab1010;
+}

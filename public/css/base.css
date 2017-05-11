@@ -1,0 +1,47 @@
+/*
+    Base
+ */
+body{
+    font-family: "Noto Sans";
+    margin: 0;
+    color: #232323;
+    font-size: 12pt;
+}
+a{
+    text-decoration: none;
+    color: #232323;
+}
+h1{
+    font-weight: normal;
+    font-size: 32pt;
+    margin: 5px;
+}
+h3{
+    font-weight: normal;
+    font-size: 24pt;
+}
+h5{
+    font-weight: normal;
+    font-size: 14pt;
+    margin: 5px;
+}
+
+/*
+    Positionnement basique
+ */
+.container{
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+.pull-left{
+    float: left;
+}
+.pull-right{
+    float: right;
+}
+
+.ancre{
+    opacity: .8;
+    padding-top: 70px;
+}
