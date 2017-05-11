@@ -4,7 +4,7 @@
 @stop
 @section('contenu')
 	<div class="container">
-		<h3>Création d'un utilisateur</h3>
+		<h3>Inscription</h3>
 		<div>
 				{!! Form::open(['url' => 'user', 'method' => 'post','files'=>true, 'class' => 'form-horizontal panel']) !!}
 				<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">

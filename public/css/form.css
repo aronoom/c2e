@@ -4,7 +4,7 @@
 form{
     width: 100%;
 }
-@media (min-width: 600px) {
+@media (min-width: 800px) {
     form{
         width: 60%;
     }
@@ -16,7 +16,7 @@ input, textarea {
     font-size: 11pt;
     border: none;
     padding: 10px;
-    width: 100%;
+    width: 90%;
     margin-bottom: 10px;
 }
 label{
@@ -47,9 +47,10 @@ label{
  */
 .form-group{
     width: 100%;
-    padding:10px 20px 20px 20px;
+    padding:10px;
 }
 .has-error{
     background-color: rgba(176,100,100, .4);
     color: #ab1010;
+    border-right: solid 3px #ab1010;
 }
