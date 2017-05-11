@@ -8,17 +8,12 @@
 					<div class="panel-heading" style="text-align: center;border-bottom:1px solid #aaa;">Création d'un catégorie</div>
 					<div class="panel-body"> 
 						<div class="col-sm-12">
-							{!! Form::Model($type,['route' => ['type.update',$type->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}	
-							<div class="form-group {!! $errors->has('nom') ? 'has-error' : '' !!}">
-								{!! Form::label('nom','Nom du catégorie') !!}
-							  	{!! Form::text('nom', null, ['class' => 'form-control', 'placeholder' => 'Nom']) !!}
-							  	{!! $errors->first('nom', '<small class="help-block">:message</small>') !!}
-							</div>
-							<div class="form-group {!! $errors->has('description') ? 'has-error' : '' !!}">
-								{!! Form::label('description','Quelle est votre motif d\'inscription ?') !!}
-							  	{!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Mon motif d\'inscription .......']) !!}
-							  	{!! $errors->first('description', '<small class="help-block">:message</small>') !!}
-							</div>
+							{!! Form::Model($type_utilisateur,['route' => ['type_utilisateur.update',$type_utilisateur->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}	
+								<div class="form-group {!! $errors->has('terme') ? 'has-error' : '' !!}">
+									{!! Form::label('terme','terme du catégorie') !!}
+							  		{!! Form::text('terme', null, ['class' => 'form-control', 'placeholder' => 'terme']) !!}
+							  		{!! $errors->first('terme', '<small class="help-block">:message</small>') !!}
+								</div>
 							
 							{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
 							{!! Form::close() !!}
