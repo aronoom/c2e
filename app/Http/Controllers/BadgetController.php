@@ -71,7 +71,7 @@ class BadgetController extends Controller
      */
     public function show($id)
     {
-        $badget = $this->BadgetRepository->getById($id);
+        $badget = $this->badgetRepository->getById($id);
         return view('badget.show',  compact('badget'));
     }
 
@@ -83,7 +83,8 @@ class BadgetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $badget = $this->badgetRepository->getById($id);
+        return view('badget.edit',  compact('badget'));
     }
 
     /**

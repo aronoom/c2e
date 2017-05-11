@@ -4,6 +4,7 @@
         <div class="pull-right">
             <ul class="menu-list menu-max">
                 <li><a href="{{ route('home') }}">Accueil</a></li>
+                <li><a href="{{ route('badget.index') }}">Badget</a></li>
                 <li><a href="#">Annonce</a></li>
                 <li><a href="{{ route('tutoriel.index') }}">Tutoriel</a></li>
                 <li><a href="{{ route('user.index') }}">Membre</a></li>

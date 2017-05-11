@@ -103,7 +103,7 @@ input .input-search{
     display: inline-block;
     width: 200px;
     border: none;
-    padding: 10px;
+    padding: 0px 10px 0px 10px;
     color: whitesmoke;
     background-color: #232323;
     border: none;
@@ -115,7 +115,7 @@ input .input-search{
         color: whitesmoke;
         background-color: #232323;
         border: none;
-        padding: 10px;
+        padding: 0px 10px 0px 10px;
     }
 }
 

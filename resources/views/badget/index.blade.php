@@ -27,8 +27,8 @@ Gestion Utilisateur
 						<tr>
 							<td><img width="60px" height="60px" src='{!! $badget->image !!}'/></td>
 							<td class="text-primary"><strong>{!! $badget->nom !!}</strong></td>
-							<td>{!! link_to_route('user.show', 'Voir', [$badget->id], ['class' => 'btn btn-success btn-block']) !!}</td>
-							<td>{!! link_to_route('user.edit', 'Modifier', [$badget->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
+							<td>{!! link_to_route('badget.show', 'Voir', [$badget->id], ['class' => 'btn btn-success btn-block']) !!}</td>
+							<td>{!! link_to_route('badget.edit', 'Modifier', [$badget->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
 							<td>
 								{!! Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $badget->id]]) !!}
 									{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
