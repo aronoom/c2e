@@ -1,0 +1,48 @@
+/*
+    Membre
+ */
+.section-membre-content{
+    display: inline-block;
+    width: 300px;
+    margin: 2%;
+    padding-bottom: 20px;
+}
+.panel-membre{
+    border-bottom: 2px solid #ab1010;
+}
+.img-membre{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
+.info-membre{
+    display: inline-block;
+    left: 5px;
+}
+.container-membre-info{
+    display: inline-block;
+    width: 190px;
+}
+.label-domaine{
+    opacity: .8;
+    font-style: italic;
+    font-size:9pt;
+}
+.label-nom{
+    font-size: 9pt;
+}
+.list-badge{
+    padding-top: 10px;
+    text-align: right;
+}
+.img-badge{
+    padding: 2px;
+    border-radius: 27px;
+}
+.link-detail-membre{
+    font-size: 10pt;
+    color: #9e9d24;
+}
+.link-detail-membre:hover{
+    color: #ab1010;
+}

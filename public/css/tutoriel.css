@@ -1,0 +1,53 @@
+.section-tuto-content{
+    display: inline-block;
+    margin: 10px 3% 20px 3%;
+}
+.img-tuto{
+    display: none;
+}
+.img-tuto-mini{
+    position: relative;
+    top: 4px;
+}
+@media (min-width: 620px) {
+    .img-tuto{
+        display: inline-block;
+        float: left;
+        width: 120px;
+        height: 120px;
+    }
+    .img-tuto-mini{
+        display: none;
+    }
+}
+.container-tuto-info{
+    float: right;
+    display: inline-block;
+    max-width: 440px;
+    min-width: 250px;
+    margin-left: 5px;
+}
+.tuto-description{
+    padding: 10px;
+    font-size: 9pt;
+    opacity: .8;
+}
+@media (min-width: 600px){
+    .tuto-description{
+        padding: 0px;
+    }
+}
+.auteur-tuto{
+    font-size: 10pt;
+    float: right;
+}
+.nom-auteur{
+    font-size: 11pt;
+    color: #9e9d24;
+}
+.link-voir-tuto{
+    display: inline;
+    font-weight: normal;
+    font-size: 14pt;
+    color: #0d47a1;
+}

@@ -1,0 +1,15 @@
+form{
+    width: ;
+}
+input {
+    display: block;
+    background-color: rgba(0, 0, 0, .1);
+    color: black;
+    border: none;
+    padding: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+label{
+    display: block;
+}

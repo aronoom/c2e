@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title')</title>
-    @include('cssBase.css')
+    {{ Html::style('css/base.css')}}
+    {{ Html::style('css/entete.css') }}
     @yield('style')
 </head>
 <body>
 	@include('menu.top_menu')
-	<div class="container">
-		@yield("contenu")
-	</div>
+    @yield("contenu")
 </body>
 	@include('jsBase.js')
 	@yield('javascript')

@@ -1,6 +1,6 @@
 @extends('base')
 @section('style')
-{{ Html::style('css/style_c2e/color_label.css')}}
+{{ Html::style('css/form.css')}}
 @stop
 @section('contenu')
 <div class="row justify-content-md-center">
@@ -13,7 +13,7 @@
 							{!! Form::open(['url' => 'user', 'method' => 'post','files'=>true, 'class' => 'form-horizontal panel']) !!}	
 							<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
 								{!! Form::label('name','Nom et Prénom') !!}
-							  	{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nom']) !!}
+							  	{!! Form::text('name', null, ['class' => 'form', 'placeholder' => 'Nom']) !!}
 							  	{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
 							</div>
 							<div class="form-group {!! $errors->has('image_fichier') ? 'has-error' : '' !!}">
