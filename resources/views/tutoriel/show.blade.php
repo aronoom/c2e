@@ -4,11 +4,11 @@ Gestion Tutoriel
 @endsection
 @section('contenu')
     <br>
-    <div class="col-sm-offset-4 col-sm-4">
+    <div class="container">
     	<div class="row justify-content-md-center">
     		<div class="col-4">
-    			<img class="col-12" src="../{!! $tutoriel->user->image !!}" alt="">
-    	</div>
+    			<img class="img-membre" src="../{!! $tutoriel->user->image !!}" alt="">
+    		</div>
     	</div>
     <div class="row">Titre:{!! $tutoriel->nom !!}</div>
 --------------------------------------------------------------------------------
@@ -30,5 +30,6 @@ Gestion Tutoriel
 		@endforeach
 			</ul>
 	</div>
+	@include('commentaire_tutoriel.create')
 	</div>
 @stop

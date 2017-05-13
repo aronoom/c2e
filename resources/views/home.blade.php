@@ -67,7 +67,7 @@
                         </div>
                     </div>
                 @endforeach
-                <a href="#" class="link-tous">Tous les tutoriels</a>
+                <a href="{{ route('tutoriel.index') }}" class="link-tous">Tous les tutoriels</a>
             </div>
 
 
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 @endforeach
-                <a href="#" class="link-tous">Tous les membres</a>
+                <a href="{{ route('user.index') }}" class="link-tous">Tous les membres</a>
             </div>
         </div>
         <div class="navigation">
