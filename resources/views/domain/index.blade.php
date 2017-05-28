@@ -27,7 +27,7 @@ Gestion Catégorie
 
 						<tr>
 							<td>{!! $domain->id !!}</td>
-							<td class="text-primary"><strong>{!! $domain->terme !!}</strong></td>
+							<td class="text-primary"><strong>{!! $domain->nom !!}</strong></td>
 							<td>{!! link_to_route('domain.show', 'Voir', [$domain->id], ['class' => 'btn btn-success btn-block']) !!}</td>
 							<td>{!! link_to_route('domain.edit', 'Modifier', [$domain->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
 							<td>
