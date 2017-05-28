@@ -1,15 +1,20 @@
 @extends('base')
+
 @section('title')
-Gestion tutoriel
+	Ajouter un chapitre
 @endsection
+
+@section('style')
+	{{Html::style("css/form.css")}}
+@endsection
+
 @section('contenu')
-    <br>
-    <div class="col-sm-12">
+	<div class="container">
     @if (!Auth::guest() && Auth::user()->id == $tutoriel->user_id)
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 		@endif
-		<b>Nom</b>
+		{{--<b>Nom</b>
 	   <div class="row">{!! $tutoriel->nom !!}</div>
 	   <b>Description</b>
 	   <div class="row">{!! $tutoriel->description !!}</div>
@@ -21,8 +26,8 @@ Gestion tutoriel
 			</div>
 			
 			@php($numero_chapitre++) 
-		@endforeach
-		<div class="row"><b>Ajoute de chapitre </b></div>
+		@endforeach--}}
+		<h3>Ajout d'un chapitre</h3>
 		@include('chapitre.create')
 	</div>
 		@section('javascript')
@@ -35,3 +40,9 @@ Gestion tutoriel
     @endif
 
 @stop
+
+@section('javascript')
+	<script>
+		@include('tinyMCE.config_all_of_tinyMCE')
+	</script>
+@endsection

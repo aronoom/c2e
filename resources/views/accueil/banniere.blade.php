@@ -1,16 +1,14 @@
 <div class="banniere">
-    <div class="bg-image">
-    </div>
     <div class="bg-degrade">
     </div>
     <div class="slogan">
-        <h1>Tuto fait par des Etudiants,</h1>
-        <h5>pour les étudiants, maintenu par des étudiants</h5>
+        <h1>Les tutoriels</h1>
+        <h5>fais par des étudiants,<br/> pour des étudiants,<br/> maintenus par des étudiants</h5>
         <div class="center ">
-            <a href="#" class="btn-connect">
-                <span class="label-connect">SE CONNECTER</span>
-                <img class="img-fleche" src="{!! asset('image/entete/fleche.png') !!}"/>
+            <a href="{{ url('/user/create') }}" class="btn-connect">
+                <span class="label-connect">S' INSCRIRE</span>
+                <span class="bg-fleche"><span class="icon-fleche"></span></span>
             </a>
         </div>
-    </div>
+</div>
 </div>

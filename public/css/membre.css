@@ -1,27 +1,25 @@
 /*
     Membre
  */
-.section-membre-content{
+.panel-membre{
     display: inline-block;
     width: 300px;
-    margin: 2%;
-    padding-bottom: 20px;
-}
-.panel-membre{
-    border-bottom: 2px solid #ab1010;
+    margin: 20px 5px;
+    border-bottom: solid 1px #00acc1;
 }
 .img-membre{
     display: inline-block;
+    float: left;
     width: 100px;
     height: 100px;
 }
 .info-membre{
     display: inline-block;
-    left: 5px;
-}
-.container-membre-info{
-    display: inline-block;
+    float: right;
     width: 190px;
+}
+.info{
+    height: 70px;
 }
 .label-domaine{
     opacity: .8;
@@ -32,17 +30,9 @@
     font-size: 9pt;
 }
 .list-badge{
-    padding-top: 10px;
     text-align: right;
 }
 .img-badge{
     padding: 2px;
     border-radius: 27px;
-}
-.link-detail-membre{
-    font-size: 10pt;
-    color: #9e9d24;
-}
-.link-detail-membre:hover{
-    color: #ab1010;
 }

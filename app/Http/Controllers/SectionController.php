@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ChapitreRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,9 +12,12 @@ use Illuminate\Support\Facades\Session;
 class SectionController extends Controller
 {
     protected $sectionRepository;
-    public function __construct(SectionRepository $sectionRepository)
+    protected  $chapitreRepository;
+
+    public function __construct(ChapitreRepository $chapitreRepository,SectionRepository $sectionRepository)
     {
         $this->sectionRepository = $sectionRepository;
+        $this->chapitreRepository = $chapitreRepository;
 
     }
     /**
@@ -31,9 +35,11 @@ class SectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($chap_id)
     {
-        //
+        Session::put('chapitre',$chap_id);
+        $chapitre = $this->chapitreRepository->getById($chap_id);
+        return view('section.create',compact('chapitre'));
     }
 
     /**

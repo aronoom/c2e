@@ -1,6 +1,12 @@
 /*
     Basic element
  */
+@media (min-width: 800px) {
+    .form-auth{
+        width: 50%;
+    }
+}
+/*
 form{
     width: 100%;
 }
@@ -8,17 +14,24 @@ form{
     form{
         width: 60%;
     }
-}
+}*/
 input, textarea, select {
     display: block;
     background-color: rgba(0, 0, 0, .1);
     color: black;
     font-size: 11pt;
     border: none;
-    padding: 10px;
-    width: 90%;
-    margin-bottom: 10px;
+    margin: 10px 0px;
 }
+input, textarea{
+    padding: 10px 2%;
+    width: 94%;
+}
+select{
+    padding: 10px 2%;
+    width: 98%;
+}
+
 label{
     margin-top: 10px;
     display: block;
@@ -27,40 +40,76 @@ label{
 /*
     Bouton
  */
-.btn {
+
+.btn, .btn-sm  {
     display: inline-block;
     padding: 10px;
-    width: 150px;
+    margin: 0px;
     text-align: center;
+    width: auto;
     color: whitesmoke;
-    background-color: rgba(0,0,0,.2);
+    background-color: #b0bec5;
     border: none;
     font-size:12pt;
 }
-.btn a{
-    padding: 0px 10px 0px 10px;
+.btn:hover{
+    opacity: .8;
+}
 
+.btn-sm {
+    padding:5px;
+}
+.btn-fixed{
+    padding: 10px;
+    width: 100px !important;
 }
 .btn-primary{
-    background-color: #0d47a1;
+
+    background-color: #00acc1;
 }
+.btn-success{
+    background-color: #689f38;
+}
+.btn-danger{
+    background-color: #ff5722;
+}
+.btn-warming{
+    background-color: #fbc02d;
+}
+.btn-group{
+    padding: 5px;
+}
+
 
 /*
     Container
  */
-.content-btn, .content-input{
-    width: 90%;
+.content-input{
+    width: 98%;
+}
+.content-btn{
+    width: 94%;
+    height: 40px;
+    margin-bottom: 30px;
 }
 
 /*
     Coloration
  */
-.form-group{
-    width: 100%;
-    padding:10px;
-}
 .has-error{
-    background-color: rgba(176,100,100, .4);
-    color: #ab1010;
-    border-right: solid 3px #ab1010;
+    background-color: #ffebee;
+    color: #f44336;
+}
+.form-group{
+    margin-bottom: 30px;
+}
+.alert-success{
+    color: #689f38;
+    background-color: #dcedc8;
+    padding: 20px;
+}
+.alert-info{
+    color: #00acc1;
+    background-color: #e0f7fa;
+    padding: 20px;
 }

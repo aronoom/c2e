@@ -9,6 +9,7 @@ use App\Repositories\ForumRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Forum;
+use App\User;
 use App\Type;
 class ForumController extends Controller
 {

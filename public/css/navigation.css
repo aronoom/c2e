@@ -1,6 +1,9 @@
 /*
     Navigation
  */
+.navigation{
+    margin-top: 30px;
+}
 .navigation >ul{
     padding-left: 10px;
     list-style: none;
@@ -18,13 +21,13 @@
     font-size: 9pt;
 }
 .nav-active{
-    border-left: 5px solid #ab1010;
+    border-left: 5px solid #00acc1;
     position: relative;
     padding-left: 15px !important;
     left: -10px;
 }
 .nav-active > a{
-    color: #ab1010;
+    color: #00acc1;
 }
 .panel-user{
     display: inline-block;
@@ -32,8 +35,8 @@
 }
 
 .navigation > ul > li > a:hover{
-    color: #ab1010;
+    color: #00acc1;
 }
 .navigation > ul > li >ul > li :hover{
-    color: #ab1010;
+    color: #00acc1;
 }

@@ -21,11 +21,20 @@ Route::resource('type','TypeController');
 Route::resource('forum','ForumController');
 Route::resource('commentaire','CommentaireController');
 Route::resource('tutoriel','TutorielController');
-Route::resource('section','SectionController');
 Route::get('tutoriel/{id}/ecriture','TutorielController@edit_tutoriel')->name('tutoriel.edit_tutoriel');
 Route::get('chapitre/{id}/ecriture','ChapitreController@edit_chapitre')->name('chapitre.edit_chapitre');
 Route::resource('niveau','NiveauController');
-Route::resource('chapitre','ChapitreController');
+
+//Route::resource('chapitre','ChapitreController');
+Route::get('tutoriel/{tuto_id}/chapitre/create', 'ChapitreController@create')->name('chapitre.create');
+Route::get('chapitre/{chapitre}/edit', 'ChapitreController@edit')->name('chapitre.edit');
+Route::post('chapitre/{chapitre}', 'ChapitreController@store')->name('chapitre.store');
+Route::put('chapitre/{chapitre}', 'ChapitreController@update')->name('chapitre.update');
+Route::delete('chapitre/{chapitre}', 'ChapitreController@destroy')->name('chapitre.destroy');
+
+//Route::resource('section','SectionController');
+Route::get('chapitre/{chap_id}/section/create', 'SectionController@create')->name('section.create');
+
 Route::resource('exercice','ExerciceController');
 Route::resource('question','QuestionController');
 Route::resource('corrige','CorrigeController');

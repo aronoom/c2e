@@ -5,14 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Repositories\TutorielRepository;
 use App\Repositories\ChapitreRepository;
 use Illuminate\Support\Facades\Session;
 use App\Chapitre;
+use Illuminate\Support\Facades\Auth;
+use App\Tutoriel;
+
 class ChapitreController extends Controller
 {
     protected $chapitreRepository;
-    public function __construct(ChapitreRepository $chapitreRepository)
+    protected $tutorielRepository;
+
+    public function __construct(TutorielRepository $tutorielRepository, ChapitreRepository $chapitreRepository)
     {
+        $this->tutorielRepository  = $tutorielRepository;
         $this->chapitreRepository  = $chapitreRepository;
     }
     /**
@@ -30,9 +37,18 @@ class ChapitreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($tuto_id)
     {
-        //
+        if(!Auth::guard(null)->guest() && Auth::user()->id == Tutoriel::find($tuto_id)->user_id)
+        {
+            Session::put('tutoriel',$tuto_id);
+            $tutoriel = $this->tutorielRepository->getById($tuto_id);
+            return view('chapitre.create',compact('tutoriel'));
+
+        }else
+        {
+            //envoi d erreur
+        }
     }
 
     /**
@@ -48,7 +64,7 @@ class ChapitreController extends Controller
     
         $this->chapitreRepository->store($inputs);
         $tutoriel = Session::get('tutoriel');
-        return redirect()->route('tutoriel.edit_tutoriel',compact('tutoriel'));
+        return redirect()->route('tutoriel.show',compact('tutoriel'))->withOk('Le chapitre a été bien enregistrer');
     }
 
     /**
@@ -74,7 +90,7 @@ class ChapitreController extends Controller
     {
         Session::put('chapitre',$id);        
         $chapitre = $this->chapitreRepository->getById($id);
-        return view('chapitre.edit_chapitre',compact('chapitre'));
+        return view('chapitre.edit',compact('chapitre'));
     }
 
     /**
@@ -85,7 +101,9 @@ class ChapitreController extends Controller
      */
     public function edit($id)
     {
-        //
+        Session::put('chapitre',$id);
+        $chapitre = $this->chapitreRepository->getById($id);
+        return view('chapitre.edit',compact('chapitre'));
     }
 
     /**
@@ -108,6 +126,7 @@ class ChapitreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->chapitreRepository->destroy($id);
+        return redirect()->back();
     }
 }

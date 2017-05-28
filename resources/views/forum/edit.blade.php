@@ -1,14 +1,11 @@
 @extends('base')
 
 @section('contenu')
-<div class="row">
-		    <div class="col-sm-12">
-		    	<br>
-				<div class="panel panel-primary">	
-					<div class="panel-heading" style="text-align: center;border-bottom:1px solid #aaa;">Création d'un utilisateur</div>
-					<div class="panel-body"> 
+<h3 class="container">
+					<h3>Edition d'un discussion</h3>
+					<div class="panel-body">
 						<div class="col-sm-12">
-							{!! Form::Model($forum,['route' => ['forum.update',$forum->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}	
+							{!! Form::Model($forum,['route' => ['forum.update',$forum->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
 
 							<div class="form-group {!! $errors->has('sujet') ? 'has-error' : '' !!}">
 								{!! Form::label('sujet','Sujet') !!}
@@ -24,11 +21,6 @@
 							{!! Form::close() !!}
 						</div>
 					</div>
-				</div>
-				<a href="javascript:history.back()" class="btn btn-primary">
-					<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-				</a>
-			</div>
 	</div>
    @section('javascript')
 		<script>
