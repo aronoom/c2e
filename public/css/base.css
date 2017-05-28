@@ -2,11 +2,11 @@
     Base
  */
 @font-face {
-    font-family: "Encode Sans";
-    src: url("../font/NotoSans-Regular.ttf");
+    font-family: "NS";
+    src: url("/font/NotoSans-Regular.ttf");
 }
 body{
-    font-family: "Noto Sans";
+    font-family: "NS";
     margin: 0;
     color: #232323;
     font-size: 12pt;
