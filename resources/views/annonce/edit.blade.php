@@ -4,30 +4,31 @@
 <div class="row">
 		    <div class="col-sm-12">
 		    	<br>
-				<div class="panel panel-primary">	
-					<div class="panel-heading" style="text-align: center;border-bottom:1px solid #aaa;">Création d'un utilisateur</div>
+				<h3 class="panel panel-primary">
+					<h3>Editer l'annonce</h3>
 					<div class="panel-body"> 
 						<div class="col-sm-12">
-							{!! Form::Model($forum,['route' => ['forum.update',$forum->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}	
+							{!! Form::Model($annonce,['route' => ['annonce.update',$annonce->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
 
 							<div class="form-group {!! $errors->has('sujet') ? 'has-error' : '' !!}">
-								{!! Form::label('sujet','Sujet') !!}
-							  	{!! Form::text('sujet', null, ['class' => 'form-control', 'placeholder' => 'Sujet du forum']) !!}
-							  	{!! $errors->first('sujet', '<small class="help-block">:message</small>') !!}
+								{!! Form::label('titre','Titre') !!}
+							  	{!! Form::text('titre', null, ['class' => 'form-control', 'placeholder' => 'Sujet du forum']) !!}
+							  	{!! $errors->first('titre', '<small class="help-block">:message</small>') !!}
 							</div>
 							<div class="form-group {!! $errors->has('description') ? 'has-error' : '' !!}">
-								{!! Form::label('description','Déscription du forum') !!}
-							  	{!! Form::textarea('description', null, ['style'=>'width: 100%;','class' => 'form-control', 'placeholder' => 'Déscription du Forum']) !!}
-							  	{!! $errors->first('description', '<small class="help-block">:message</small>') !!}
+								<div class="content-input">
+									{!! Form::label('text','Contenu') !!}
+									{!! Form::textarea('text', null, ['style'=>'width: 100%;','class' => 'form-control textarea', 'placeholder' => 'Déscription du Forum']) !!}
+									{!! $errors->first('text', '<small class="help-block">:message</small>') !!}
+								</div>
 							</div>
-							{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
+							<div class="content-btn">
+								{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
+							</div>
 							{!! Form::close() !!}
 						</div>
 					</div>
 				</div>
-				<a href="javascript:history.back()" class="btn btn-primary">
-					<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-				</a>
 			</div>
 	</div>
    @section('javascript')

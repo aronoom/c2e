@@ -1,102 +1,126 @@
-<?php $__env->startSection('style'); ?>
-<?php echo e(Html::style('css/form.css')); ?>
-
+<?php $__env->startSection('title'); ?>
+	Inscription
 <?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('contenu'); ?>
-	<div class="container">
-		<h3>Création d'un utilisateur</h3>
-		<div>
-				<?php echo Form::open(['url' => 'user', 'method' => 'post','files'=>true, 'class' => 'form-horizontal panel']); ?>
+	<h3>Inscription</h3>
 
-				<div class="form-group <?php echo $errors->has('name') ? 'has-error' : ''; ?>">
-					<?php echo Form::label('name','Nom et Prénom'); ?>
+	<?php echo Form::open(['url' => 'user', 'method' => 'post','files'=>true, 'class' => 'form-horizontal panel']); ?>
 
-					<?php echo Form::text('name', null, ['class' => 'form', 'placeholder' => 'JEAN Rakoto']); ?>
+		<div class="<?php echo $errors->has('name') ? 'has-error' : ''; ?>">
+			<div class="form-group-2">
+				<?php echo Form::label('name','Nom *'); ?>
 
-					<?php echo $errors->first('name', '<small class="help-block">:message</small>'); ?>
+				<?php echo Form::text('name', null, ['class' => 'form', 'placeholder' => 'RAKOTO']); ?>
 
-				</div>
-				<div class="form-group <?php echo $errors->has('image_fichier') ? 'has-error' : ''; ?>">
-					<?php echo Form::label('image_fichier','Photo de votre avatar'); ?>
+			</div>
+			<div class="form-group-2 <?php echo $errors->has('prenom') ? 'has-error' : ''; ?>">
+				<?php echo Form::label('prenom','Prénom(s) '); ?>
 
-					<?php echo Form::file('image_fichier', null, ['class' => 'form-control', 'placeholder' => 'image_fichier']); ?>
+				<?php echo Form::text('prenom', null, ['class' => 'form', 'placeholder' => 'Jean']); ?>
 
-					<?php echo $errors->first('image_fichier', '<small class="help-block">:message</small>'); ?>
+			</div>
+			<?php echo $errors->first('name', '<small class="help-block">:message</small>'); ?>
 
-				</div>
-				<div class="form-group <?php echo $errors->has('login') ? 'has-error' : ''; ?>">
-					<?php echo Form::label('login','Login'); ?>
+		</div>
+		<div class="form-group <?php echo $errors->has('login') ? 'has-error' : ''; ?>">
+			<?php echo Form::label('login','Pseudo *'); ?>
 
-					<?php echo Form::text('login', null, ['class' => 'form-control', 'placeholder' => 'jeanrak']); ?>
+			<?php echo Form::text('login', null, ['class' => 'form-control', 'placeholder' => 'jeanrak']); ?>
 
-					<?php echo $errors->first('login', '<small class="help-block">:message</small>'); ?>
+			<?php echo $errors->first('login', '<small class="help-block">:message</small>'); ?>
 
-				</div>
-				<div class="form-group <?php echo $errors->has('telephone') ? 'has-error' : ''; ?>">
-					<?php echo Form::label('telephone','Numéro de téléphone'); ?>
+		</div>
+		<div class="form-group <?php echo $errors->has('email') ? 'has-error' : ''; ?>">
+			<?php echo Form::label('email','Email *'); ?>
 
-					<?php echo Form::text('telephone', null, ['class' => 'form-control', 'placeholder' => '+261']); ?>
+			<?php echo Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'c2e@gmail.com']); ?>
 
-					<?php echo $errors->first('telephone', '<small class="help-block">:message</small>'); ?>
+			<?php echo $errors->first('email', '<small class="help-block">:message</small>'); ?>
 
-				</div>
-				<div class="form-group <?php echo $errors->has('adresse') ? 'has-error' : ''; ?>">
-					<?php echo Form::label('adresse','Adresse postale'); ?>
+		</div>
+		<div class="form-group <?php echo $errors->has('age') ? 'has-error' : ''; ?>">
+			<?php echo Form::label('annee_nais','Année de naissance'); ?>
 
-					<?php echo Form::text('adresse', null, ['class' => 'form-control', 'placeholder' => 'Antananarivo 67ha Lot ....']); ?>
+			<?php echo Form::number('annee_nais', 1995, ['class' => 'form-control', 'placeholder' => '']); ?>
 
-					<?php echo $errors->first('adresse', '<small class="help-block">:message</small>'); ?>
+			<?php echo $errors->first('annee_nais', '<small class="help-block">:message</small>'); ?>
 
-				</div>
-				<div class="form-group <?php echo $errors->has('Motif_insrciption') ? 'has-error' : ''; ?>">
-					<?php echo Form::label('Motif_insrciption','Quelle est votre motif d\'inscription ?'); ?>
+		</div>
+		<div class="form-group <?php echo $errors->has('telephone') ? 'has-error' : ''; ?>">
+			<?php echo Form::label('telephone','Numéro de téléphone'); ?>
 
-					<?php echo Form::textarea('Motif_insrciption', null, ['class' => 'form-control textarea', 'placeholder' => 'Mon motif d\'inscription .......']); ?>
+			<?php echo Form::text('telephone', null, ['class' => 'form-control', 'placeholder' => '+261']); ?>
 
-					<?php echo $errors->first('Motif_insrciption', '<small class="help-block">:message</small>'); ?>
+			<?php echo $errors->first('telephone', '<small class="help-block">:message</small>'); ?>
 
-				</div>
+		</div>
+		<div class="form-group <?php echo $errors->has('adresse') ? 'has-error' : ''; ?>">
+			<?php echo Form::label('adresse','Adresse'); ?>
 
-				<div class="form-group <?php echo $errors->has('email') ? 'has-error' : ''; ?>">
-					<?php echo Form::label('email','Adresse E-Mail'); ?>
+			<?php echo Form::text('adresse', null, ['class' => 'form-control']); ?>
 
-					<?php echo Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'c2e@gmail.com']); ?>
+			<?php echo $errors->first('adresse', '<small class="help-block">:message</small>'); ?>
 
-					<?php echo $errors->first('email', '<small class="help-block">:message</small>'); ?>
+		</div>
+		<hr/>
 
-				</div>
+		<label>Fonction</label>
+		<div class="form-group-checkbox">
+			<div class="form-group-inline <?php echo $errors->has('etudiant') ? 'has-error' : ''; ?>">
+				<?php echo Form::radio('etudiant', true, ['class' => 'form-control-inline']); ?>
 
-				<div class="form-group <?php echo $errors->has('password') ? 'has-error' : ''; ?>">
-					<?php echo Form::label('password','Mots de passe'); ?>
+				<?php echo Form::label('etudiant','Etudiant', ['class' => 'form-control-inline']); ?>
 
-					<?php echo Form::password('password', ['class' => 'form-control', 'placeholder' => 'Mot de passe']); ?>
+				<?php echo $errors->first('adresse', '<small class="help-block">:message</small>'); ?>
 
-					<?php echo $errors->first('password', '<small class="help-block">:message</small>'); ?>
+			</div>
+			<div class="form-group-inline <?php echo $errors->has('etudiant') ? 'has-error' : ''; ?>">
+				<?php echo Form::radio('etudiant', false, false, ['class' => 'form-control']); ?>
 
-				</div>
-				<div class="form-group">
-					<?php echo Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirmation mot de passe']); ?>
+				<?php echo Form::label('etudiant','Employé', ['class' => 'form-control-inline']); ?>
 
-				</div>
-				<div class="form-group">
-					<div class="checkbox">
-						<label>
-							<?php echo Form::checkbox('admin', 1, null); ?> Administrateur
-						</label>
-					</div>
-				</div>
-				<div class="pull-right">
-					<?php echo Form::submit('Envoyer', ['class' => 'btn btn-primary']); ?>
-
-					<a href="javascript:history.back()" class="btn ">
-						<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-					</a>
-					<?php echo Form::close(); ?>
-
-				</div>
 			</div>
 		</div>
-	</div>
+		<div class="form-group <?php echo $errors->has('domaine') ? 'has-error' : ''; ?>">
+			<?php echo Form::label('domaine','Domaine'); ?>
+
+			<?php echo Form::text('domaine', null, ['class' => 'form-control', 'placeholder' => 'Génie logiciel et Base de donnée']); ?>
+
+			<?php echo $errors->first('adresse', '<small class="help-block">:message</small>'); ?>
+
+		</div>
+		<div class="form-group <?php echo $errors->has('domaine') ? 'has-error' : ''; ?>">
+			<?php echo Form::label('lieu','Lieu'); ?>
+
+			<?php echo Form::text('lieu', null, ['class' => 'form-control', 'placeholder' => 'Ecole Nationale d\'informatique']); ?>
+
+			<?php echo $errors->first('adresse', '<small class="help-block">:message</small>'); ?>
+
+		</div>
+		<?php /*<hr/>
+		<div class=" form-group <?php echo $errors->has('password') ? 'has-error' : ''; ?>">
+			<div class="form-group-2">
+				<?php echo Form::label('password','Mots de passe *'); ?>
+
+				<?php echo Form::password('password', ['class' => 'form-control', 'placeholder' => 'mdp1234']); ?>
+
+			</div>
+			<div class="form-group-2">
+				<?php echo Form::label('password','Confirmation *'); ?>
+
+				<?php echo Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'mdp1234']); ?>
+
+			</div>
+			<?php echo $errors->first('password', '<small class="help-block">:message</small>'); ?>
+
+		</div>*/ ?>
+		<div class="content-btn ">
+			<?php echo Form::submit('Envoyer', ['class' => 'btn btn-primary btn-fixed pull-right']); ?>
+
+		</div>
+	<?php echo Form::close(); ?>
+
 
 <?php $__env->stopSection(); ?>
 

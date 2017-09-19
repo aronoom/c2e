@@ -8,8 +8,14 @@
 
 namespace App\Repositories;
 
+use App\Annonce;
 
-class AnnonceRepository
+class AnnonceRepository extends ResourceRepository
 {
+
+    public function __construct(Annonce $annonce)
+    {
+        $this->model = $annonce;
+    }
 
 }

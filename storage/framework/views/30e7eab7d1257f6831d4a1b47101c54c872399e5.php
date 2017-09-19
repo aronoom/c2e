@@ -1,49 +1,62 @@
+<?php $__env->startSection('title'); ?> Tutoriels <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('title'); ?>
-Gestion Tutoriel
+<?php $__env->startSection('style'); ?>
+	<?php echo e(Html::style('css/tutoriel.css')); ?>
+
 <?php $__env->stopSection(); ?>
-<?php $__env->startSection('contenu'); ?>
-    <br>
-    <div class="col-sm-12">
-    	<?php if(session()->has('ok')): ?>
-			<div class="alert alert-success alert-dismissible"><?php echo session('ok'); ?></div>
-		<?php endif; ?>
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">Liste des Tutoriels</h3>
-			</div>
-					<?php foreach($tutoriels as $tutoriel): ?>
-						<?php echo $tutoriel->id; ?>
 
-							<?php echo $tutoriel->nom; ?>
+<?php $__env->startSection('banniere'); ?>
+	<div class="container">
+		<div class="tuto-banniere">
+		<pre class=" language-c"><code class="language-c hljs cpp"><span class="token function"><span class="hljs-built_in">printf</span></span><span class="token punctuation">(</span><span class="token string"><span class="hljs-string">"Hello world!"</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true"><span class="hljs-comment">//La rédaction d'un tutoriel permet d'avoir un badge</span></span></code></pre>
+			<center>
+				<?php echo link_to_route('tutoriel.create', 'Rédiger un tutoriel', [], ['class' => 'tuto-btn ']); ?>
 
-							<img src="<?php echo $tutoriel->image; ?>" class="img-fluid col-10" alt="">
-						<div class="description">	
-							<?php echo $tutoriel->description; ?>
-
-							<?php echo link_to_route('tutoriel.show', 'Voir', [$tutoriel->id], ['class' => '']); ?>
-
-                 
-                                                        <?php if(!Auth::guest() && Auth::user()->id == $tutoriel->user_id): ?>
-                                                            <?php echo link_to_route('tutoriel.edit', 'Modifier les Informations du tutoriel', [$tutoriel->id], ['class' => '']); ?>
-
-                                                            <?php echo link_to_route('tutoriel.edit_tutoriel', 'Continuer l\'écriture du  tutoriel', [$tutoriel->id], ['class' => '']); ?>
-
-                                                        <?php endif; ?>
-								<?php echo Form::open(['method' => 'DELETE', 'route' => ['tutoriel.destroy', $tutoriel->id]]); ?>
-
-									<?php echo Form::submit('Supprimer', ['class' => '', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']); ?>
-
-								<?php echo Form::close(); ?>
-
-						</div>
-					<?php endforeach; ?>
-	  			
+			</center>
 		</div>
-		<?php echo link_to_route('tutoriel.create', 'Ajouter un utilisateur', [], ['class' => 'btn btn-info pull-right']); ?>
-
-		<?php echo $links; ?>
-
 	</div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('contenu'); ?>
+	<?php if(session()->has('ok')): ?>
+		<div class="alert-success"><?php echo session('ok'); ?></div>
+	<?php endif; ?>
+
+	<h3>
+		<a href="#aprecies" class="ancre" id="tuto"></a>Tutoriels
+	</h3>
+	<?php foreach($tutoriels as $tutoriel): ?>
+		<div class="panel-tuto">
+			<img class="img-tuto" src='<?php echo asset($tutoriel->badget->image); ?>'/>
+			<div class="container-tuto-info">
+				<div class="tuto-description">
+					<a href="<?php echo e(route('tutoriel.show', [$tutoriel->id])); ?>">
+						<p  class="paragraphe"> <?php echo e($tutoriel->description); ?> </p>
+					</a>
+					<?php /* <?php echo e(link_to_route('tutoriel.show', $tutoriel->description, [$tutoriel->id])); ?> */ ?>
+				</div>
+				<div class="tuto-titre">
+					<?php echo e(link_to_route('tutoriel.show', $tutoriel->nom, [$tutoriel->id], ['class' => 'link-voir-tuto'])); ?><br/>
+					<span class="nom-auteur"> Par <?php echo e($tutoriel->user->name. ' ' .$tutoriel->user->prenom); ?>,</span>
+				</div>
+			</div>
+		</div>
+	<?php endforeach; ?>
+	<?php echo $tutoriels->links(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('navigation'); ?>
+	<ul>
+		<li>
+			<a href="#aprecies">TUTORIELS</a>
+			<ul>
+				<?php foreach($tutoriels as $tutoriel): ?>
+					<li><?php echo e(link_to_route('tutoriel.show', $tutoriel->nom, [$tutoriel->id], ['class' => ''])); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		</li>
+	</ul>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('base', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

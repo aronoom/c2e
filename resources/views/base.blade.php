@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>c2e | @yield('title')</title>
+    <title>@yield('title')</title>
+    <link rel="icon" href="{{ asset('favicon.svg') }}" />
     {{ Html::style('css/base.css')}}
     {{ Html::style('css/entete.css') }}
     {{ Html::style('css/form.css') }}
@@ -24,9 +25,10 @@
             @yield("navigation")
         </div>
     </div>
-    <footer class="footer">
+    {{--<footer class="footer">
         @yield("footer")
-    <footer>
+    <footer>--}}
+    @yield('modal')
 </body>
 	@include('jsBase.js')
 	@yield('javascript')

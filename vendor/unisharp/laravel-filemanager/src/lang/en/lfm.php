@@ -6,6 +6,9 @@ return [
     'nav-upload'        => 'Upload',
     'nav-thumbnails'    => 'Thumbnails',
     'nav-list'          => 'List',
+    'nav-sort'          => 'Sort',
+    'nav-sort-alphabetic'=> 'Sort By Alphabets',
+    'nav-sort-time'     => 'Sort By Time',
 
     'menu-rename'       => 'Rename',
     'menu-delete'       => 'Delete',
@@ -56,6 +59,7 @@ return [
     'btn-uploading'     => 'Uploading...',
     'btn-close'         => 'Close',
     'btn-crop'          => 'Crop',
+    'btn-copy-crop'     => 'Copy & Crop',
     'btn-cancel'        => 'Cancel',
     'btn-resize'        => 'Resize',
 

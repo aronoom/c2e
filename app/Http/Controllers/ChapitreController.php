@@ -37,18 +37,10 @@ class ChapitreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($tuto_id)
-    {
-        if(!Auth::guard(null)->guest() && Auth::user()->id == Tutoriel::find($tuto_id)->user_id)
-        {
-            Session::put('tutoriel',$tuto_id);
-            $tutoriel = $this->tutorielRepository->getById($tuto_id);
-            return view('chapitre.create',compact('tutoriel'));
-
-        }else
-        {
-            //envoi d erreur
-        }
+    public function create($tuto_id){
+        Session::put('tutoriel',$tuto_id);
+        $tutoriel = $this->tutorielRepository->getById($tuto_id);
+        return view('chapitre.create',compact('tutoriel'));
     }
 
     /**
@@ -59,12 +51,11 @@ class ChapitreController extends Controller
      */
     public function store(Request $request)
     {
-        $inputs = array_merge($request->all(),['tutoriel_id' => Session::get('tutoriel')]);                
-       // $inputs = array_merge($inputs,['image' => $this->tutorielRepository->save_image($request->all()['image_fichier'])]);
-    
+        $inputs = array_merge($request->all(),['tutoriel_id' => Session::get('tutoriel')]);
+        $inputs = array_merge($inputs,['nom' => strtoupper($request->all()['nom'])]);
         $this->chapitreRepository->store($inputs);
         $tutoriel = Session::get('tutoriel');
-        return redirect()->route('tutoriel.show',compact('tutoriel'))->withOk('Le chapitre a été bien enregistrer');
+        return redirect()->route('tutoriel.show',compact('tutoriel'))->withOk('Le chapitre a été bien ajouté');
     }
 
     /**
@@ -101,9 +92,9 @@ class ChapitreController extends Controller
      */
     public function edit($id)
     {
-        Session::put('chapitre',$id);
+        Session::put('chapitre', $id);
         $chapitre = $this->chapitreRepository->getById($id);
-        return view('chapitre.edit',compact('chapitre'));
+        return view('chapitre.edit', compact('chapitre'));
     }
 
     /**
@@ -115,7 +106,10 @@ class ChapitreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $inputs = array_merge($request->all(),['nom' => strtoupper($request->all()['nom'])]);
+        $this->chapitreRepository->update($id, $inputs);
+        $tutoriel = Tutoriel::find(Session::get('tutoriel'));
+        return redirect()->route('tutoriel.show', compact('tutoriel'))->withOk("Le chapitre a été modifié.");
     }
 
     /**
@@ -127,6 +121,6 @@ class ChapitreController extends Controller
     public function destroy($id)
     {
         $this->chapitreRepository->destroy($id);
-        return redirect()->back();
+        return redirect()->back()->withOk("Le chapitre a été supprimé.");
     }
 }

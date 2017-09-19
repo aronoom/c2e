@@ -14,12 +14,12 @@
 	{!! Form::open(['url' => 'tutoriel', 'method' => 'post','files' => true, 'class' => 'form-horizontal panel']) !!}
 		<div class="form-group {!! $errors->has('nom') ? 'has-error' : '' !!}">
 			{!! Form::label('nom','Titre') !!}
-			{!! Form::text('nom', null, ['class' => 'form-control', 'placeholder' => 'Titre du tutoriel']) !!}
+			{!! Form::text('nom', null, ['class' => 'form-control', 'placeholder' => '']) !!}
 			{!! $errors->first('nom', '<small class="help-block">:message</small>') !!}
 		</div>
 		<div class="form-group {!! $errors->has('Types[]') ? 'has-error' : '' !!}">
-			{!! Form::label('Types[]','Badget attribué à ce tutoriel') !!}
-			{!! Form::select('Types[]',App\Type::lists('nom','id'),null, ['class' => 'form-control', 'placeholder' => '']) !!}
+			{!! Form::label('badget_id','Badge') !!}
+			{!! Form::select('badget_id', $badges,null, ['class' => 'form-control', 'placeholder' => '']) !!}
 			{!! $errors->first('Types[]', '<small class="help-block">:message</small>') !!}
 		</div>
 		<div class="form-group {!! $errors->has('niveau_id') ? 'has-error' : '' !!}">
@@ -40,7 +40,7 @@
 			</div>
 		</div>
 		<div class="form-group {!! $errors->has('nom') ? 'has-error' : '' !!}">
-			{!! Form::label('tags','Mots clés') !!}
+			{!! Form::label('tags','Tags') !!}
 			{!! Form::text('tags', null, ['class' => 'form-control', 'placeholder' => 'language c, linux']) !!}
 			{!! $errors->first('nom', '<small class="help-block">:message</small>') !!}
 		</div>

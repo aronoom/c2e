@@ -1,16 +1,34 @@
 <ul>
-    <li>
-        <a href="#annonce">Annonce récente</a>
-        <ul>
-            <li class="nav-active"><a href="#">Offre de stage</a></li>
-            <li><a href="#">Offre d'emploi</a></li>
-            <li><a href="#">Competition Web CUP</a></li>
-        </ul>
-    </li>
-    <li>
-        <a href="#tuto">Tutoriel récente</a>
-    </li>
-    <li>
-        <a href="#membre">Membre actif</a>
-    </li>
+    <?php if(!$annonces->isEmpty()): ?>
+        <li>
+            <a href="#annonce">ANNONCES RECENTES</a>
+            <ul>
+                <?php foreach($annonces as $annonce): ?>
+                    <li><a href="#"><?php echo e($annonce->titre); ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </li>
+    <?php endif; ?>
+
+    <?php if(!$tutoriels->isEmpty()): ?>
+        <li>
+            <a href="#tuto">TUTORIELS RECENTS</a>
+            <ul>
+                <?php foreach($tutoriels as $tutoriel): ?>
+                    <li><?php echo e(link_to_route('tutoriel.show', $tutoriel->nom, [$tutoriel->id], ['class' => ''])); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </li>
+    <?php endif; ?>
+
+    <?php if(!$users->isEmpty()): ?>
+        <li>
+            <a href="#membre">MEMBRES ACTIFS</a>
+            <ul>
+                <?php foreach($users as $user): ?>
+                    <li><?php echo link_to_route('user.show', $user->name." ". $user->prenom , [$user->id], ['class' => '']); ?><br/></li>
+                <?php endforeach; ?>
+            </ul>
+        </li>
+    <?php endif; ?>
 </ul>

@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Repositories\ChapitreRepository;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\Repositories\SectionRepository;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use App\Tutoriel;
 
 class SectionController extends Controller
 {
@@ -50,12 +51,10 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
-        $inputs = array_merge($request->all(),['chapitre_id' => Session::get('chapitre')]);                
-       // $inputs = array_merge($inputs,['image' => $this->tutorielRepository->save_image($request->all()['image_fichier'])]);
-    
+        $inputs = array_merge($request->all(),['chapitre_id' => Session::get('chapitre')]);
         $this->sectionRepository->store($inputs);
-        $chapitre = Session::get('chapitre');
-        return redirect()->route('chapitre.edit_chapitre',compact('chapitre'));
+        $tutoriel = Session::get('tutoriel');
+        return redirect()->route('tutoriel.show',compact('tutoriel'));
     }
 
     /**
@@ -77,7 +76,11 @@ class SectionController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(!Auth::guard(null)->guest() && Auth::user()->id == Tutoriel::find($id)->user_id) {
+            Session::put('chapitre', $id);
+            $section = $this->sectionRepository->getById($id);
+            return view('section.edit', compact('section'));
+        }
     }
 
     /**
@@ -89,7 +92,9 @@ class SectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->sectionRepository->update($id, $request->all());
+        $tutoriel = Tutoriel::find(Session::get('tutoriel'));
+        return redirect()->route('tutoriel.show', compact('tutoriel'))->withOk("La section a été modifiée.");
     }
 
     /**
@@ -100,6 +105,7 @@ class SectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->sectionRepository->destroy($id);
+        return redirect()->back()->withOk("La section a été supprimée.");
     }
 }

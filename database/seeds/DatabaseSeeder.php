@@ -12,7 +12,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    	factory(App\User::class, 20)->create();
+    	//factory(App\User::class, 20)->create();
         // $this->call(UsersTableSeeder::class);
+        //DB::table('badgets')
+        //    ->insert(['libelle' => 'php']);
+
+        DB::table('niveaus')->insert(['niveau' => 'facile']);
+        DB::table('niveaus')->insert(['niveau' => 'difficile']);
+        DB::table('niveaus')->insert(['niveau' => 'moyenne']);
     }
 }

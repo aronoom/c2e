@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class Own
 {
@@ -21,12 +22,11 @@ class Own
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             }
-
             return redirect()->guest('login');
         }
-        else if(Auth::user()->id != $request->get('id')){
-            return back();
+        else if(Auth::user()->id == Session::get('user') || Auth::user()->type_utilisateur->terme == "admin"){
+            return $next($request);
         }
-        return $next($request);
+        return back();
     }
 }

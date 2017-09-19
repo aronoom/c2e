@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('title')
-	Modification d'un chapitre
+	Modification d'une chapitre
 @endsection
 
 @section('style')
@@ -9,9 +9,8 @@
 @endsection
 
 @section('contenu')
-	<div class="container">
-		<h3>Modification du chapitre</h3>
-		{!! Form::open(['url' => 'chapitre', 'put' => 'post', 'class' => 'form-horizontal panel']) !!}
+		<h3>Modifier une chapitre</h3>
+		{!! Form::Model($chapitre,['route' => ['chapitre.update',$chapitre->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
 		<div class="form-group {!! $errors->has('nom') ? 'has-error' : '' !!}">
 			{!! Form::label('Titre') !!}
 			{!! Form::text('nom', null, ['class' => 'form-control', 'placeholder' => 'Titre du chapitre']) !!}
@@ -28,7 +27,6 @@
 			{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
 		</div>
 		{!! Form::close() !!}
-	</div>
 	@section('javascript')
 		<script>
 			@include('tinyMCE.config_all_of_tinyMCE')

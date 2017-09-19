@@ -14,7 +14,7 @@ use App\Type;
 class ForumController extends Controller
 {
 
-    protected $nbr_page =3;
+    protected $nbr_page =12;
     protected $forumRepository;
     public function __construct(ForumRepository $forumRepository)
     {
@@ -27,9 +27,8 @@ class ForumController extends Controller
      */
     public function index()
     {
-        $forums = $this->forumRepository->getPaginate($this->nbr_page);
-        $links  = $forums->setPath('')->render();
-        return view('forum.index', compact('forums', 'links'));
+        $forums = Forum::orderBy('created_at', 'desc')->paginate($this->nbr_page);
+        return view('forum.index', compact('forums'));
     }
 
     /**
@@ -52,12 +51,11 @@ class ForumController extends Controller
     public function store(Request $request)
     {
         $inputs = array_merge($request->all(), ['user_id' => Auth::user()->id]);
-        $forum = $this->forumRepository->store($inputs);
-        $forum->types()->sync($request->get('Types'));
-        $user = User::find($forum->user_id);
-        $user->score = $user->score+1;
+        $this->forumRepository->store($inputs);
+        $user = Auth::user();
+        $user->score = $user->score+3;
         $user->save();
-        return redirect('forum')->withOk("Le forum " . $forum->sujet . " a été créé.");
+        return redirect('discussion')->withOk("La discussion a été créé.");
     }
 
     /**
@@ -68,7 +66,6 @@ class ForumController extends Controller
      */
     public function show($id)
     {
- 
         $forum = $this->forumRepository->getById($id);
         Session::put('forum',$id);
         return view('forum.show',  compact('forum'));
@@ -96,7 +93,7 @@ class ForumController extends Controller
     public function update(Request $request, $id)
     {
         $this->forumRepository->update($id, $request->all());   
-        return redirect('forum')->withOk("L'forum " . $request->input('nom    ') . " a été modifié.");
+        return redirect('discussion')->withOk("La discussion a été modifié.");
     }
 
     /**
@@ -107,6 +104,10 @@ class ForumController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->forumRepository->destroy($id);
+        $user = Forum::find($id)->user;
+        $user->score = $user->score-3;
+        $user->save();
+        return redirect('discussion')->withOk("La discussion a été supprimé.");
     }
 }

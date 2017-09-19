@@ -4,37 +4,48 @@
         <div class="pull-right">
             <ul class="menu-list menu-max">
                 <li><a href="{{ route('home') }}">Accueil</a></li>
-                <li><a href="{{ route('badget.index') }}">Badget</a></li>
-                <li><a href="#">Annonce</a></li>
+                <li><a href="{{ route('annonce.index') }}">Annonce</a></li>
                 <li><a href="{{ route('tutoriel.index') }}">Tutoriel</a></li>
                 <li><a href="{{ route('user.index') }}">Membre</a></li>
                 <li><a href="{{ route('forum.index') }}">Discussion</a></li>
+                <li><a href="{{ route('apropos') }}">A propos</a></li>
+                @if (!Auth::guest() && Auth::user()->type_utilisateur->terme == "admin")
+                    <li><a href="{{ route('badget.index') }}">Badge</a></li>
+                @endif
+                @if (!Auth::guest() && (Auth::user()->type_utilisateur->terme == "validateur" || Auth::user()->type_utilisateur->terme == "admin"))
+                    <li><a href="{{ route('tutoriel.list_validation') }}">Validation</a></li>
+                @endif
             </ul>
             <div class="menu-user">
                 @if(Auth::guest())
-                    <img class="img-user" src=" {!! asset('images_users/Luc6AarabW.jpg') !!}">
+                    <img class="img-user" src=" {!! asset('icon/login.svg') !!}">
                     <ul class="list-menu-guest">
                         <li><a href=" {{ url('/login') }}" class="link-dark"> Se connecter</a></li>
                     </ul>
                 @else
                     <img class="img-user" src="{!! asset(Auth::user()->image) !!}">
                     <ul class="list-menu-guest">
-                        <li><a href="#" class="link-dark">Profil</a></li>
-                        <li><a href=" {{ url('/logout') }}" class="link-dark"> Se déconnecter</a></li>
+                        <li><a href="{{route('user.show', [Auth::user()->id])}}" class="link-dark">Profil</a></li>
+                        <li><a href="{{ url('/logout') }}" class="link-dark"> Se déconnecter</a></li>
                     </ul>
                 @endif
             </div>
             <div class="menu-min">
-                {{--<img class="menu-icon" src="{!! asset('image/entete/menu.ico.png') !!}"/>--}}
-                <span class="menu-icon"></span>
+                <img class="menu-icon" src="{{asset('icon/menu.svg')}}"/>
                 <ul class="list-menu-link">
                     <li></li>
                     <li><a href="{{ route('home') }}">Accueil</a></li>
-                    <li><a href="{{ route('badget.index') }}">Badget</a></li>
-                    <li><a href="#">Annonce</a></li>
+                    <li><a href="{{ route('annonce.index') }}">Annonce</a></li>
                     <li><a href="{{ route('tutoriel.index') }}">Tutoriel</a></li>
                     <li><a href="{{ route('user.index') }}">Membre</a></li>
                     <li><a href="{{ route('forum.index') }}">Discussion</a></li>
+                    <li><a href="#">A propos</a></li>
+                    @if (!Auth::guest() && Auth::user()->type_utilisateur->terme == "admin")
+                        <li><a href="{{ route('badget.index') }}">Badge</a></li>
+                    @endif
+                    @if (!Auth::guest() && (Auth::user()->type_utilisateur->terme == "validateur" || Auth::user()->type_utilisateur->terme == "admin"))
+                        <li><a href="{{ route('tutoriel.list_validation') }}">Validation</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -51,8 +62,10 @@
             <span class="def-logo-recherche">Club d'Entraide des Etudiants</span>
         </div>
         <div>
-            <input class="input-search" type="text" id="test"/>
-            <img class="img-loupe" src="{!! asset('image/entete/loupe.png') !!}"/>
+            {!! Form::open(['route' => ['home.search'], 'method' => 'get']) !!}
+                <input class="input-search" type="text" id="test" name="data" value="{{Request::get('data')}}"/>
+                <img class="img-loupe" src="{!! asset('image/entete/loupe.png') !!}" onclick="submit()"/>
+            {!! Form::close() !!}
         </div>
     </div>
 

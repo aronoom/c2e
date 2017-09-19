@@ -3,7 +3,7 @@
  */
 @font-face {
     font-family: "NS";
-    src: url("http://localhost/c2e/public/font/NotoSans-Regular.ttf");
+    src: url("http://localhost/c2e/public_html/font/NotoSans-Regular.ttf");
 }
 textarea{
     font-family: "NS", "Myriad Pro";

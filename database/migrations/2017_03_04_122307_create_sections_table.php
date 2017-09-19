@@ -20,8 +20,8 @@ class CreateSectionsTable extends Migration
             $table->foreign('chapitre_id')
                         ->references('id')
                         ->on('chapitres')
-                        ->onDelete('restrict')
-                        ->onUpdate('restrict');
+                        ->onDelete('cascade')
+                        ->onUpdate('cascade');
             $table->timestamps();
         });
     }

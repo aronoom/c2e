@@ -1,16 +1,16 @@
 <div class="banniere">
-    <div class="bg-image">
-    </div>
     <div class="bg-degrade">
     </div>
     <div class="slogan">
-        <h1>Tuto fait par des Etudiants,</h1>
-        <h5>pour les étudiants, maintenu par des étudiants</h5>
-        <div class="center ">
-            <a href="#" class="btn-connect">
-                <span class="label-connect">SE CONNECTER</span>
-                <img class="img-fleche" src="<?php echo asset('image/entete/fleche.png'); ?>"/>
-            </a>
-        </div>
-    </div>
+        <h1>Les tutoriels</h1>
+        <h5>faits par des étudiants,<br/> pour des étudiants,<br/> maintenus par des étudiants</h5>
+        <?php if(Auth::guest()): ?>
+            <div class="center ">
+                <a href="<?php echo e(url('/user/create')); ?>" class="btn-connect">
+                    <span class="label-connect">S' INSCRIRE</span>
+                    <span class="bg-fleche"><span class="icon-fleche"></span></span>
+                </a>
+            </div>
+        <?php endif; ?>
+</div>
 </div>

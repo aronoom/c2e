@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Commentaire;
+use App\User;
 use Illuminate\Http\Request;
 use App\Repositories\CommentaireRepository;
 use App\Http\Requests;
@@ -44,17 +46,15 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-       $forum = Forum::find(Session::get('forum'));    
-       $inputs = array_merge($request->all(), ['user_id' => Auth::user()->id]);
-       $inputs = array_merge($inputs, ['forum_id' => Session::get('forum')]);
-       $this->commentaireRepository->store($inputs);
-       if(Auth::user() != null && Auth::user()->id != $forum->user_id)
-        {
-            $user = User::find($forum->user_id);
-            $user->score = $user->score+1;
-            $user->save();
-        }
-       return  redirect()->route('forum.show',compact('forum'));
+        $id = Auth::user()->id;
+        $forum = Forum::find(Session::get('forum'));
+        $inputs = array_merge($request->all(), ['user_id' => $id]);
+        $inputs = array_merge($inputs, ['forum_id' => Session::get('forum')]);
+        Commentaire::create($inputs);
+        $user = Auth::user();
+        $user->score = $user->score+1;
+        $user->save();
+        return  redirect()->route('forum.show',compact('forum'));
     }
 
     /**
@@ -99,6 +99,13 @@ class CommentaireController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Commentaire::find($id)->user;
+        if(Auth::user() == $user || Auth::user()->type_utilisateur->terme == 'admin') {
+            $this->commentaireRepository->destroy($id);
+            $user->score = $user->score-1;
+            $user->save();
+            return back()->withOk("Le commentaire a été supprimé.");
+        }
+        return back();
     }
 }

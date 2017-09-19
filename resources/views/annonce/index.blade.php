@@ -1,37 +1,68 @@
 @extends('base')
 @section('title')
-Forum
+	Annonce
 @endsection
-@section('contenu')
-<div class="row">
-    <div class="col-sm-12">
-    	@if(session()->has('ok'))
-			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
-		@endif
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">Forum</h3>
-			</div>
-			
-					@foreach ($forums as $forum)
-							
-                            <div class="row">
 
-                            	{!! $forum->sujet !!}
-                            </div>
-                            <div class="row">
-                            	<div class="col-9">{!! $forum->description !!}</div>
-                            </div>
-							{!! link_to_route('forum.show', 'Voir', [$forum->id], ['class' => '']) !!}</td>
-							{!! link_to_route('forum.edit', 'Modifier', [$forum->id], ['class' => '']) !!}</td>
-								{!! Form::open(['method' => 'DELETE', 'route' => ['forum.destroy', $forum->id]]) !!}
-									{!! Form::submit('Supprimer', ['class' => '', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
-								{!! Form::close() !!}
-					@endforeach
-	  		
+@section('style')
+	{{Html::style('css/annonce.css')}}
+@endsection
+
+@section('banniere')
+	<div class="container annonce-banniere">
+		<div class="tuto-banniere">
+			<div class="">
+				{!! link_to_route('annonce.create', 'Mettre une annonce', [], ['class' => 'tuto-btn']) !!}
+			</div>
 		</div>
-		{!! link_to_route('forum.create', 'Créer un nouveau Forum', [], ['class' => 'btn btn-info pull-right']) !!}
-		{!! $links !!}
 	</div>
-	</div>
-@stop
+@endsection
+
+@section('contenu')
+	@if(session()->has('ok'))
+		<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
+	@endif
+
+	<h3 class="panel-title">Annonces</h3>
+
+	@foreach ($annonces as $annonce)
+		<div class="annonce-section">
+			<div class="annonce-auteur">
+				<img id="<?= $annonce->id.'_'.str_replace(' ', '_', $annonce->titre)?>" class="annonce-auteur-photo" src="{!! asset($annonce->user->image) !!}" alt="">
+				<span class="disc-auteur-nom">{{$annonce->user->name." ".$annonce->user->prenom}}, le {{ date_format($annonce->created_at, 'd/m/y')}}</span>
+			</div>
+			@if (!Auth::guest() && (Auth::user()->id == $annonce->user->id || Auth::user()->type_utilisateur->terme == "admin"))
+				<div class="btn-group">
+					<a href="{{route('annonce.edit', [$annonce->id])}}"><img src="{{asset('icon/edit.svg')}}" class="btn-crud"></a>
+					{!! Form::open(['method' => 'DELETE', 'class'=>'form-inline', 'route' => ['annonce.destroy', $annonce->id]]) !!}
+						<img src="{{asset('icon/del.svg')}}"
+							 class="btn-crud"
+							 onclick="if(confirm('Voulez-vous vraiment supprimé ce commentaire?')) submit()"/>
+					{!! Form::close() !!}
+				</div>
+			@endif
+			<h6 class="annonce-titre"><?= strtoupper($annonce->titre)?></h6>
+			<div class="disc-description">{!! $annonce->text !!}</div>
+		</div>
+	@endforeach
+
+	{!! $annonces->links() !!}
+@endsection
+
+@section('navigation')
+	<ul>
+		<li>
+			<a href="#aprecies">ANNONCES</a>
+			<ul>
+				@foreach($annonces as $annonce)
+					<li><a href="#<?= $annonce->id.'_'.str_replace(' ', '_', $annonce->titre)?>">{{$annonce->titre}}</a></li>
+				@endforeach
+			</ul>
+		</li>
+	</ul>
+@endsection
+
+@section('javascript')
+	<script>
+		@include('tinyMCE.config_all_of_tinyMCE')
+	</script>
+@endsection

@@ -12,6 +12,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $table = 'users';
+    public function validations()
+    {
+        return $this->hasMany('App\User');
+    }
     public function tutoriels() 
     {
         return $this->hasMany('App\Tutoriel');
@@ -33,22 +37,22 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\universite','user_universite');
     }
-    public function type_utilisateurs()
+    public function type_utilisateur()
     {
         return $this->belongsTo('App\Type_utilisateur');
     }
-    public function domain()
+    /*public function domain()
     {
         return $this->belongsTo('App\Domain');
-    }
+    }*/
     public function badgets()
     {
         return $this->belongsToMany('App\badget','user_badget');
     }
 
     protected $fillable = [
-        'name', 'prenom', 'email', 'password','login','telephone','adresse','Motif_insrciption','date_inscription',
-        'date_activation','nombre_de_connection','mode_economique','connecter','nbr_vue','image','domain_id','type_utilisateur_id'
+        'name', 'prenom', 'email', 'password','login','telephone','adresse','etudiant','domaine','lieu'
+        ,'image','type_utilisateur_id', 'annee_nais', 'score', 'pass_changed'
     ];
 
     public function setPasswordAttribute($password)

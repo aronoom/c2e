@@ -3,7 +3,7 @@
  */
 .banniere{
     height: 370px;
-    background: url("http://localhost/c2e/public/image/entete/bg.svg") no-repeat;
+    background: url("http://localhost/c2e/public_html/image/entete/bg.svg") no-repeat;
 }
 .slogan{
     color: whitesmoke;

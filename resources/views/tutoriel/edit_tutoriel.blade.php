@@ -9,7 +9,6 @@
 @endsection
 
 @section('contenu')
-	<div class="container">
     @if (!Auth::guest() && Auth::user()->id == $tutoriel->user_id)
     	@if(session()->has('ok'))
 			<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
@@ -29,7 +28,6 @@
 		@endforeach--}}
 		<h3>Ajout d'un chapitre</h3>
 		@include('chapitre.create')
-	</div>
 		@section('javascript')
 	<script>
 		@include('tinyMCE.config_all_of_tinyMCE')

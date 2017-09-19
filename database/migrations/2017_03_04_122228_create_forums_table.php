@@ -14,7 +14,7 @@ class CreateForumsTable extends Migration
     {
         Schema::create('forums', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sujet',25);
+            $table->string('sujet',60);
             $table->mediumText('description');
             $table->date('date');
             $table->boolean('resolu')->default(false);
@@ -22,7 +22,7 @@ class CreateForumsTable extends Migration
             $table->foreign('user_id')
                         ->references('id')
                         ->on('users')
-                        ->onDelete('restrict');
+                        ->onDelete('cascade');
             $table->timestamps();
         });
     }

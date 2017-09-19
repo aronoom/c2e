@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Badget;
+use App\Tag;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\Repositories\TutorielRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -14,7 +15,7 @@ use App\User;
 
 class TutorielController extends Controller
 {
-    protected $nbr_page = 3;
+    protected $nbr_page = 12;
     protected $tutorielRepository;
     public function  __construct(TutorielRepository $tutorielRepository)
     {
@@ -27,9 +28,39 @@ class TutorielController extends Controller
      */
     public function index()
     {
-        $tutoriels = $this->tutorielRepository->getPaginate($this->nbr_page);
+        $tutoriels = Tutoriel::where('validation_id', '<>', 'null')->orderBy("created_at", "desc")->paginate($this->nbr_page);
+        return view('tutoriel.index',compact('tutoriels'));
+    }
+
+    public function validation()
+    {
+        $tutoriels = Tutoriel::where('validation_id', '=', 'null')->paginate($this->nbr_page);
         $links     = $tutoriels->setPath('')->render();
-        return view('tutoriel.index',compact('tutoriels','links'));
+        return view('tutoriel.validation',compact('tutoriels','links'));
+    }
+
+    public function valider($id)
+    {
+        $tutoriel = $this->tutorielRepository->getById($id);
+        $tutoriel->validation_id = Auth::user()->id;
+        $tutoriel->save();
+        $user = Tutoriel::find($id)->user;
+        $user->score = $user->score+16;
+        $user->save();
+        return redirect()->route('tutoriel.show',compact('tutoriel'))->withOk("Validation effectuée.");
+    }
+
+    public function annulerValidation($id)
+    {
+        $tutoriel = $this->tutorielRepository->getById($id);
+        if(Auth::user()->id == $tutoriel->validation_id || Auth::user()->type_utilisateur == 'admin') {
+            $tutoriel->validation_id = null;
+            $tutoriel->save();
+            $user = Tutoriel::find($id)->user;
+            $user->score = $user->score-16;
+            $user->save();
+            return redirect()->route('tutoriel.show', compact('tutoriel'))->withOk("Validation effectuée.");
+        }
     }
 
     /**
@@ -49,8 +80,9 @@ class TutorielController extends Controller
         }else
           {
           
-            $niveaus   = Niveau::lists('niveau','id');        
-            return view('tutoriel.create',compact('niveaus'));
+            $niveaus   = Niveau::lists('niveau','id');
+            $badges   = Badget::lists('nom','id');
+              return view('tutoriel.create',compact('niveaus', 'badges'));
           }
     }
 
@@ -63,17 +95,20 @@ class TutorielController extends Controller
     public function store(Request $request)
     {
         $id = Auth::user()->id;
-        $inputs = array_merge($request->all(),['user_id' => $id]);                
-       // $inputs = array_merge($inputs,['image' => $this->tutorielRepository->save_image($request->all()['image_fichier'])]);
-        // $user = User::find($id);
-        // $user->score = $user->score+1;
-        // $user->save();
-        
+        $inputs = array_merge($request->all(),['user_id' => $id]);
         $tutoriel = $this->tutorielRepository->store($inputs);
-        // dd($request->get('Types'));
-        $tutoriel->types()->sync($request->get('Types'));
-        return redirect()->route('tutoriel.index');
-       
+        $tags = explode(',', $request->all()['tags']);
+        foreach ($tags as $t){
+            $tag = Tag::where("tag", trim($t))->first();
+            if($tag == null)
+                $tag = Tag::create(["tag" => trim($t)]);
+            $tutoriel->tags()->attach($tag);
+        }
+        $tutoriel->save();
+        $user = Auth::user();
+        $user->score = $user->score+4;
+        $user->save();
+        return redirect()->route('user.show', compact('user'))->withOk('Le tutoriel a été créé avec succès.');
     }
 
     /**
@@ -85,15 +120,15 @@ class TutorielController extends Controller
     public function show($id)
     {
         $tutoriel = Tutoriel::find($id);
-        $tutoriel->nbr_vue = ($tutoriel->nbr_vue+1);
-        $tutoriel->save();
-        if(Auth::user() != null && Auth::user()->id != $tutoriel->user_id)
-        {
-            $user = User::find($tutoriel->user_id);
-            $user->score = $user->score+1;
-            $user->save();
-        }
-        return view('tutoriel.show',compact('tutoriel'));
+        if($tutoriel->validation != null
+            || !Auth::guard(null)->guest() && (
+                Auth::user() == $tutoriel->user
+                || Auth::user()->type_utilisateur->terme == 'validateur'
+                || Auth::user()->type_utilisateur->terme == 'admin')){
+            Session::put('tutoriel', $id);
+            return view('tutoriel.show',compact('tutoriel'));
+        };
+        return back();
     }
 
 /**
@@ -124,11 +159,19 @@ class TutorielController extends Controller
      */
     public function edit($id)
     {
-        if(!Auth::guard(null)->guest() && Auth::user()->id == Tutoriel::find($id)->user_id)
+        if(!Auth::guard(null)->guest() &&
+            (Auth::user()->id == Tutoriel::find($id)->user_id || Auth::user()->type_utilisateur->terme == "admin"))
         {
             $tutoriel = $this->tutorielRepository->getById($id);
-            $niveaus   = Niveau::lists('niveau','id');        
-            return view('tutoriel.edit',compact('tutoriel','niveaus'));
+            $niveaus   = Niveau::lists('niveau','id');
+            $badges   = Badget::lists('nom','id');
+            $tagArray = $tutoriel->tags;
+            $tutoriel->tags = "";
+            foreach ($tagArray as $t){
+                $tutoriel->tags = $tutoriel->tags .", ". $t->tag;
+            }
+            $tutoriel->tags = substr($tutoriel->tags, 2);
+            return view('tutoriel.edit',compact('tutoriel','niveaus', 'badges'));
 
         }else
         {
@@ -145,9 +188,20 @@ class TutorielController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $this->tutorielRepository->update($id, $request->all());   
-        return redirect('tutoriel')->withOk("L'tutoriel " . $request->input('nom    ') . " a été modifié.");
+        $this->tutorielRepository->update($id, $request->all());
+        $tutoriel = Tutoriel::find($id);
+        foreach ($tutoriel->tags as $tag){
+            $tutoriel->tags()->detach($tag);
+        }
+        $tags = explode(',', $request->all()['tags']);
+        foreach ($tags as $t){
+            $tag = Tag::where("tag", trim($t))->first();
+            if($tag == null)
+                $tag = Tag::create(["tag" => trim($t)]);
+            $tutoriel->tags()->attach($tag);
+        }
+        $tutoriel->save();
+        return redirect()->route('tutoriel.show', compact('tutoriel'))->withOk("Le tutoriel a été modifié.");
     }
 
     /**
@@ -158,6 +212,10 @@ class TutorielController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Tutoriel::find($id)->user;
+        $user->score = $user->score-4;
+        $user->save();
+        $this->tutorielRepository->destroy($id);
+        return redirect()->route('user.show', compact('user'))->withOk("Le tutoriel a été supprimé.");
     }
 }

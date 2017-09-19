@@ -14,11 +14,6 @@
 			{!! Form::text('nom', null, ['class' => 'form-control', 'placeholder' => 'Nom']) !!}
 			{!! $errors->first('nom', '<small class="help-block">:message</small>') !!}
 		</div>
-		<div class="form-group {!! $errors->has('description') ? 'has-error' : '' !!}">
-			{!! Form::label('description','Déscription du badget') !!}
-			{!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Déscription du badget .......']) !!}
-			{!! $errors->first('description', '<small class="help-block">:message</small>') !!}
-		</div>
 
 		<div class="form-group {!! $errors->has('image') ? 'has-error' : '' !!}">
 			{!! Form::label('image_fch','Joindre un Image') !!}

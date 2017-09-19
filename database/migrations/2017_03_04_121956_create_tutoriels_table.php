@@ -17,18 +17,25 @@ class CreateTutorielsTable extends Migration
             $table->string('nom', 50);
             $table->string('description',300);
             $table->mediumText('introduction');
-            $table->boolean('valider')->default(false);
             $table->integer('nbr_vue')->unsigned()->default(1);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
                         ->references('id')
                         ->on('users')
-                        ->onDelete('restrict');
+                        ->onDelete('cascade');
             $table->integer('niveau_id')->unsigned();
             $table->foreign('niveau_id')
                         ->references('id')
                         ->on('niveaus');
             $table->timestamps();
+        });
+        Schema::table('tutoriels', function (Blueprint $table){
+            $table->integer('validation_id')->unsigned()->index();
+            $table->integer('badget_id')->unsigned()->index();
+            /*$table->foreign('validateur_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('restrict');*/
         });
     }
 
