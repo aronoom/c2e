@@ -1,94 +1,119 @@
+<?php $__env->startSection('style'); ?>
+	<?php echo e(Html::style('css/form.css')); ?>
 
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('title'); ?>
+	Modifier profil
+	<?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('contenu'); ?>
-<div class="row">
-		    <div class="justify-content-md-center col-sm-4 col-sm-offset-4">
-		    	<br>
-				<div class="panel panel-primary">	
-					<div class="panel-heading" style="text-align: center;border-bottom:1px solid #aaa;">Création d'un utilisateur</div>
-					<div class="panel-body"> 
-						<div class="col-sm-12">
-							<?php echo Form::Model($user,['route' => ['user.update',$user->id], 'method' => 'put', 'class' => 'form-horizontal panel']); ?>	
-							<div class="form-group <?php echo $errors->has('name') ? 'has-error' : ''; ?>">
-								<?php echo Form::label('name','Nom et Prénom'); ?>
+	<h3>Modification du profil</h3>
 
-							  	<?php echo Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nom']); ?>
+	<?php echo Form::Model($user,['route' => ['user.update',$user->id], 'method' => 'put', 'class' => 'form-horizontal panel']); ?>
 
-							  	<?php echo $errors->first('name', '<small class="help-block">:message</small>'); ?>
+	<div class="<?php echo $errors->has('name') ? 'has-error' : ''; ?>">
+		<div class="form-group-2">
+			<?php echo Form::label('name','Nom *'); ?>
 
-							</div>
-							<div class="form-group <?php echo $errors->has('login') ? 'has-error' : ''; ?>">
-								<?php echo Form::label('login','Login'); ?>
+			<?php echo Form::text('name', null, ['class' => 'form', 'placeholder' => 'RAKOTO']); ?>
 
-							  	<?php echo Form::text('login', null, ['class' => 'form-control', 'placeholder' => 'login']); ?>
+		</div>
+		<div class="form-group-2 <?php echo $errors->has('prenom') ? 'has-error' : ''; ?>">
+			<?php echo Form::label('prenom','Prénom(s) '); ?>
 
-							  	<?php echo $errors->first('login', '<small class="help-block">:message</small>'); ?>
+			<?php echo Form::text('prenom', null, ['class' => 'form', 'placeholder' => 'Jean']); ?>
 
-							</div>
-							<div class="form-group <?php echo $errors->has('telephone') ? 'has-error' : ''; ?>">
-								<?php echo Form::label('telephone','Numéro de téléphone'); ?>
+		</div>
+		<?php echo $errors->first('name', '<small class="help-block">:message</small>'); ?>
 
-							  	<?php echo Form::text('telephone', null, ['class' => 'form-control', 'placeholder' => '+261']); ?>
-
-							  	<?php echo $errors->first('telephone', '<small class="help-block">:message</small>'); ?>
-
-							</div>
-							<div class="form-group <?php echo $errors->has('adresse') ? 'has-error' : ''; ?>">
-								<?php echo Form::label('adresse','Adresse postale'); ?>
-
-							  	<?php echo Form::text('adresse', null, ['class' => 'form-control', 'placeholder' => 'Antananarivo 67ha Lot ....']); ?>
-
-							  	<?php echo $errors->first('adresse', '<small class="help-block">:message</small>'); ?>
-
-							</div>
-							<div class="form-group <?php echo $errors->has('Motif_insrciption') ? 'has-error' : ''; ?>">
-								<?php echo Form::label('Motif_insrciption','Quelle est votre motif d\'inscription ?'); ?>
-
-							  	<?php echo Form::textarea('Motif_insrciption', null, ['class' => 'form-control', 'placeholder' => 'Mon motif d\'inscription .......']); ?>
-
-							  	<?php echo $errors->first('Motif_insrciption', '<small class="help-block">:message</small>'); ?>
-
-							</div>
-							
-							<div class="form-group <?php echo $errors->has('email') ? 'has-error' : ''; ?>">
-								<?php echo Form::label('email','Adresse E-Mail'); ?>
-
-							  	<?php echo Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'c2e@gmail.com']); ?>
-
-							  	<?php echo $errors->first('email', '<small class="help-block">:message</small>'); ?>
-
-							</div>
-
-							<div class="form-group <?php echo $errors->has('password') ? 'has-error' : ''; ?>">
-								<?php echo Form::label('password','Mots de passe'); ?>
-
-							  	<?php echo Form::password('password', ['class' => 'form-control', 'placeholder' => 'Mot de passe']); ?>
-
-							  	<?php echo $errors->first('password', '<small class="help-block">:message</small>'); ?>
-
-							</div>
-							<div class="form-group">
-							  	<?php echo Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirmation mot de passe']); ?>
-
-							</div>
-							<div class="form-group">
-								<div class="checkbox">
-									<label>
-										<?php echo Form::checkbox('admin', 1, null); ?> Administrateur
-									</label>
-								</div>
-							</div>
-							<?php echo Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']); ?>
-
-							<?php echo Form::close(); ?>
-
-						</div>
-					</div>
-				</div>
-				<a href="javascript:history.back()" class="btn btn-primary">
-					<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-				</a>
-			</div>
 	</div>
+	<div class="form-group <?php echo $errors->has('login') ? 'has-error' : ''; ?>">
+		<?php echo Form::label('login','Pseudo'); ?>
+
+		<?php echo Form::text('login', null, ['class' => 'form-control', 'placeholder' => 'jeanrak']); ?>
+
+		<?php echo $errors->first('login', '<small class="help-block">:message</small>'); ?>
+
+	</div>
+	<div class="form-group <?php echo $errors->has('email') ? 'has-error' : ''; ?>">
+		<?php echo Form::label('email','Email'); ?>
+
+		<?php echo Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'c2e@gmail.com']); ?>
+
+		<?php echo $errors->first('email', '<small class="help-block">:message</small>'); ?>
+
+	</div>
+	<div class="form-group <?php echo $errors->has('age') ? 'has-error' : ''; ?>">
+		<?php echo Form::label('annee_nais','Année de naissance'); ?>
+
+		<?php echo Form::number('annee_nais',1995, ['class' => 'form-control', 'placeholder' => '']); ?>
+
+		<?php echo $errors->first('annee_nais', '<small class="help-block">:message</small>'); ?>
+
+	</div>
+	<div class="form-group <?php echo $errors->has('telephone') ? 'has-error' : ''; ?>">
+		<?php echo Form::label('telephone','Numéro de téléphone'); ?>
+
+		<?php echo Form::text('telephone', null, ['class' => 'form-control', 'placeholder' => '+261']); ?>
+
+		<?php echo $errors->first('telephone', '<small class="help-block">:message</small>'); ?>
+
+	</div>
+	<div class="form-group <?php echo $errors->has('adresse') ? 'has-error' : ''; ?>">
+		<?php echo Form::label('adresse','Adresse'); ?>
+
+		<?php echo Form::text('adresse', null, ['class' => 'form-control']); ?>
+
+		<?php echo $errors->first('adresse', '<small class="help-block">:message</small>'); ?>
+
+	</div>
+	<hr/>
+
+	<label>Fonction</label>
+	<div class="form-group-checkbox">
+		<div class="form-group-inline <?php echo $errors->has('etudiant') ? 'has-error' : ''; ?>">
+			<?php echo Form::radio('etudiant', true, ['class' => 'form-control-inline']); ?>
+
+			<?php echo Form::label('etudiant','Etudiant', ['class' => 'form-control-inline']); ?>
+
+			<?php echo $errors->first('adresse', '<small class="help-block">:message</small>'); ?>
+
+		</div>
+		<div class="form-group-inline <?php echo $errors->has('etudiant') ? 'has-error' : ''; ?>">
+			<?php echo Form::radio('etudiant', false, false, ['class' => 'form-control']); ?>
+
+			<?php echo Form::label('etudiant','Employé', ['class' => 'form-control-inline']); ?>
+
+		</div>
+	</div>
+	<div class="form-group <?php echo $errors->has('domaine') ? 'has-error' : ''; ?>">
+		<?php echo Form::label('domaine','Domaine'); ?>
+
+		<?php echo Form::text('domaine', null, ['class' => 'form-control', 'placeholder' => 'Génie logiciel et Base de donnée']); ?>
+
+		<?php echo $errors->first('adresse', '<small class="help-block">:message</small>'); ?>
+
+	</div>
+	<div class="form-group <?php echo $errors->has('domaine') ? 'has-error' : ''; ?>">
+		<?php echo Form::label('lieu','Lieu'); ?>
+
+		<?php echo Form::text('lieu', null, ['class' => 'form-control', 'placeholder' => 'Ecole Nationale d\'informatique']); ?>
+
+		<?php echo $errors->first('adresse', '<small class="help-block">:message</small>'); ?>
+
+	</div>
+	<div class="content-btn ">
+		<?php echo Form::submit('Envoyer', ['class' => 'btn btn-primary btn-fixed pull-right']); ?>
+
+	</div>
+	<?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('javascript'); ?>
+	<script>
+		<?php echo $__env->make('tinyMCE.config_all_of_tinyMCE', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('base', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

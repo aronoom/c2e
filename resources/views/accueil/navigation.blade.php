@@ -1,16 +1,34 @@
 <ul>
-    <li>
-        <a href="#annonce">Annonce récente</a>
-        <ul>
-            <li class="nav-active"><a href="#">Offre de stage</a></li>
-            <li><a href="#">Offre d'emploi</a></li>
-            <li><a href="#">Competition Web CUP</a></li>
-        </ul>
-    </li>
-    <li>
-        <a href="#tuto">Tutoriel récente</a>
-    </li>
-    <li>
-        <a href="#membre">Membre actif</a>
-    </li>
+    @if(!$annonces->isEmpty())
+        <li>
+            <a href="#annonce">ANNONCES RECENTES</a>
+            <ul>
+                @foreach($annonces as $annonce)
+                    <li><a href="#">{{$annonce->titre}}</a></li>
+                @endforeach
+            </ul>
+        </li>
+    @endif
+
+    @if(!$tutoriels->isEmpty())
+        <li>
+            <a href="#tuto">TUTORIELS RECENTS</a>
+            <ul>
+                @foreach($tutoriels as $tutoriel)
+                    <li>{{ link_to_route('tutoriel.show', $tutoriel->nom, [$tutoriel->id], ['class' => '']) }}</li>
+                @endforeach
+            </ul>
+        </li>
+    @endif
+
+    @if(!$users->isEmpty())
+        <li>
+            <a href="#membre">MEMBRES ACTIFS</a>
+            <ul>
+                @foreach($users as $user)
+                    <li>{!! link_to_route('user.show', $user->name." ". $user->prenom , [$user->id], ['class' => '']) !!}<br/></li>
+                @endforeach
+            </ul>
+        </li>
+    @endif
 </ul>

@@ -13,9 +13,9 @@
 	</div>
 	@foreach ($forum->commentaires as $commentaire)
 		<div class="row">
-		    <img class="col-1" src="../{!! $commentaire->user->image !!}" alt="">
-			{!! $commentaire->user->name !!}</br>
-			{!! $commentaire->phrase !!}
+		    <img class="col-1" src="../{{ $commentaire->user->image }}" alt="">
+			{{ $commentaire->user->name }}<br/>
+			{{ $commentaire->phrase }}
 		</div>
 	@endforeach
 	@include('commentaire.create')
@@ -25,4 +25,4 @@
 	</script>
   @endsection
 
-@stop
+@endsection

@@ -3,12 +3,14 @@
     </div>
     <div class="slogan">
         <h1>Les tutoriels</h1>
-        <h5>fais par des étudiants,<br/> pour des étudiants,<br/> maintenus par des étudiants</h5>
-        <div class="center ">
-            <a href="{{ url('/user/create') }}" class="btn-connect">
-                <span class="label-connect">S' INSCRIRE</span>
-                <span class="bg-fleche"><span class="icon-fleche"></span></span>
-            </a>
-        </div>
+        <h5>faits par des étudiants,<br/> pour des étudiants,<br/> maintenus par des étudiants</h5>
+        @if (Auth::guest())
+            <div class="center ">
+                <a href="{{ url('/user/create') }}" class="btn-connect">
+                    <span class="label-connect">S' INSCRIRE</span>
+                    <span class="bg-fleche"><span class="icon-fleche"></span></span>
+                </a>
+            </div>
+        @endif
 </div>
 </div>

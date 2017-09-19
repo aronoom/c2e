@@ -1,12 +1,7 @@
-## Documents
-  1. [Installation](https://github.com/UniSharp/laravel-filemanager/blob/master/docs/installation.md)
-  1. [Integration](https://github.com/UniSharp/laravel-filemanager/blob/master/docs/integration.md)
-  1. [Config](https://github.com/UniSharp/laravel-filemanager/blob/master/docs/config.md)
-  1. [Customization](https://github.com/UniSharp/laravel-filemanager/blob/master/docs/customization.md)
-  1. [Events](https://github.com/UniSharp/laravel-filemanager/blob/master/docs/events.md)
-
 ## Requirements
  * php >= 5.4
+ * exif extension
+ * gd OR imagick (choose one only)
  * Laravel 5
  * requires [intervention/image](https://github.com/Intervention/image) (to make thumbs, crop and resize images).
 
@@ -42,4 +37,8 @@
     php artisan vendor:publish --tag=lfm_public
     ```
     
-1. Ensure that the files & images directories (in `config/lfm.php`) are writable by your web server.
+1. Ensure that the files & images directories (in `config/lfm.php`) are writable by your web server (run commands like `chown` or `chmod`).
+
+1. Check the [integration document](http://unisharp.github.io/laravel-filemanager/integration) to see how to apply this package.
+
+1. Check the [config document](http://unisharp.github.io/laravel-filemanager/config) to discover the flexibility of this package.

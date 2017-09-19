@@ -16,17 +16,17 @@ class CreateCommentairesTable extends Migration
             $table->increments('id');
             $table->mediumText('phrase');
             $table->boolean('reponse')->default(false);
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')
                         ->references('id')
                         ->on('users')
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
-            $table->integer('forum_id')->unsigned();
+            $table->integer('forum_id')->unsigned()->index();
             $table->foreign('forum_id')
                         ->references('id')
                         ->on('forums')
-                        ->onDelete('restrict')
+                        ->onDelete('cascade')
                         ->onUpdate('restrict');
             $table->timestamps();
         });
