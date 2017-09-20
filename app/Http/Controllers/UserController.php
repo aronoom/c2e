@@ -29,12 +29,13 @@ class UserController extends Controller
     }
 
 
-    public function sendEmailReminder($login, $pass, $user)
+    public function sendEmailReminder($login, $pass)
     {
+        $user = User::where('email', $login);
 
         Mail::send('user.email', ['user' => $user, 'login' => $login, 'password' => $pass], function ($m) use ($user) {
             $m->from('aronomeniaina@gmail.com', 'c2e');
-            $m->to($user->email, $user->name)->subject('Bienvenue!');
+            $m->to($user->email, $user->name)->subject('Login c2e');
         });
     }
 
@@ -74,9 +75,7 @@ class UserController extends Controller
         $inputs = array_merge($inputs,['type_utilisateur_id'=>Type_utilisateur::where('terme','simple')->first()->id]);
         $inputs = array_merge($inputs,compact('password'));
         $this->userRepository->store($inputs);
-        $user = User::where('email', $inputs['email']);
-
-        $this->sendEmailReminder($inputs['email'], $password, $user);
+        $this->sendEmailReminder($inputs['email'], $password);
 
         return redirect()->route('user.bienvenue');
     }
@@ -123,7 +122,7 @@ class UserController extends Controller
         return redirect()->route('user.show', compact('user', 'roles'))->withOk("La photo a été modifié.");
     }
 
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $this->setAdmin($request);
         $this->userRepository->update($id, $request->all());
