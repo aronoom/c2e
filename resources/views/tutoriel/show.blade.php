@@ -16,7 +16,7 @@
 		<div class="alert alert-success alert-dismissible">{!! session('ok') !!}</div>
 	@endif
 	<h3> {!! $tutoriel->nom !!}
-		@if (!Auth::guest() && ($tutoriel->validation_id == null) && (Auth::user()->id == $tutoriel->user->id || Auth::user()->type_utilisateur->terme == "admin"))
+		@if (!Auth::guest() && ($tutoriel->validation == null) && (Auth::user()->id == $tutoriel->user->id || Auth::user()->type_utilisateur->terme == "admin"))
 			<a href="{{route('chapitre.create', [$tutoriel->id])}}"><img src="{{asset('icon/add.svg')}}" class="btn-crud"/></a>
 			<a href="{{route('tutoriel.edit', [$tutoriel->id])}}"><img src="{{asset('icon/edit.svg')}}" class="btn-crud"/></a>
 			<img id="btn-del-tuto" src="{{asset('icon/del.svg')}}" class="btn-crud"/>
@@ -24,12 +24,12 @@
 	</h3>
 	<div>
 		@if (!Auth::guest() && Auth::user()->id != $tutoriel->user->id &&
-         ($tutoriel->validation_id == null) && (Auth::user()->type_utilisateur->terme == "validateur" || Auth::user()->type_utilisateur->terme == "admin"))
+         ($tutoriel->validation == null) && (Auth::user()->type_utilisateur->terme == "validateur" || Auth::user()->type_utilisateur->terme == "admin"))
 			{!! Form::open(['method' => 'POST', 'style'=>'display:inline-block', 'route' => ['tutoriel.validation', $tutoriel->id]]) !!}
 			{!! Form::submit('Valider', ['class' => 'btn btn-primary '])!!}
 			{!! Form::close() !!}
 		@endif
-		@if(!Auth::guest() && (Auth::user()->id == $tutoriel->validation_id || Auth::user()->type_utilisateur == 'admin'))
+		@if(!Auth::guest() && (($tutoriel->validation !=null && Auth::user()->id == $tutoriel->validation->id) || Auth::user()->type_utilisateur == 'admin'))
 			{!! Form::open(['method' => 'POST', 'style'=>'display:inline-block', 'route' => ['tutoriel.annulerValidation', $tutoriel->id]]) !!}
 			{!! Form::submit('Annuler la validation', ['class' => 'btn btn-primary'])!!}
 			{!! Form::close() !!}
@@ -61,7 +61,7 @@
 				<a id="<?= str_replace(' ', "_",$chapitre->nom)?>" class="ancre">#</a>
 				{{ $chapitre->nom }}
 
-				@if (!Auth::guest() && ($tutoriel->validation_id == null) && (Auth::user()->id == $tutoriel->user->id || Auth::user()->type_utilisateur->terme == "admin"))
+				@if (!Auth::guest() && ($tutoriel->validation == null) && (Auth::user()->id == $tutoriel->user->id || Auth::user()->type_utilisateur->terme == "admin"))
 					<a href="{{route('section.create', [$chapitre->id])}}"><img src="{{asset('icon/add.svg')}}" class="btn-crud-sm"/></a>
 					<a href="{{route('chapitre.edit', [$chapitre->id])}}"><img src="{{asset('icon/edit.svg')}}" class="btn-crud-sm"/></a>
 					{!! Form::open(['method' => 'DELETE', 'route' => ['chapitre.destroy', $chapitre->id], 'style'=> 'display: inline-block']) !!}
@@ -78,7 +78,7 @@
 					<br/>
 					<h6>
 						<a id="<?= str_replace(' ', "_",$section->titre)?>" class="ancre"></a>{{ $section->titre }}
-						@if (!Auth::guest() && ($tutoriel->validation_id == null) && (Auth::user()->id == $tutoriel->user->id || Auth::user()->type_utilisateur->terme == "admin"))
+						@if (!Auth::guest() && ($tutoriel->validation == null) && (Auth::user()->id == $tutoriel->user->id || Auth::user()->type_utilisateur->terme == "admin"))
 							<a href="{{route('section.edit', [$section->id])}}"><img src="{{asset('icon/edit.svg')}}" class="btn-crud-sm"/></a>
 							{!! Form::open(['method' => 'DELETE', 'style'=>'display:inline-block', 'route' => ['section.destroy', $section->id]]) !!}
 								<img id="btn-del-chap"

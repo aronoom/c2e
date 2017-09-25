@@ -33,10 +33,10 @@
 			@if (!Auth::guest() && (Auth::user()->id == $annonce->user->id || Auth::user()->type_utilisateur->terme == "admin"))
 				<div class="btn-group">
 					<a href="{{route('annonce.edit', [$annonce->id])}}"><img src="{{asset('icon/edit.svg')}}" class="btn-crud"></a>
-					{!! Form::open(['method' => 'DELETE', 'class'=>'form-inline', 'route' => ['annonce.destroy', $annonce->id]]) !!}
+					{!! Form::open(['name'=>'formAnnonceDelete', 'method' => 'DELETE', 'class'=>'form-inline', 'route' => ['annonce.destroy', $annonce->id]]) !!}
 						<img src="{{asset('icon/del.svg')}}"
 							 class="btn-crud"
-							 onclick="if(confirm('Voulez-vous vraiment supprimé ce commentaire?')) submit()"/>
+							 onclick="if(confirm('Voulez-vous vraiment supprimé cette annonce ?')) formAnnonceDelete.submit()"/>
 					{!! Form::close() !!}
 				</div>
 			@endif

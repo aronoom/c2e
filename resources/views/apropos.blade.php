@@ -19,7 +19,9 @@
                             {!! link_to_route('user.show', $auteur->name." ". $auteur->prenom , [$auteur->id], ['class' => 'link']) !!}<br/>
                             <span class="label-domaine">{{ $auteur->domaine }}</span><br/>
                             @foreach($auteur->tutoriels as $tutoriel)
-                                <img class="img-badge" src="{{asset( $tutoriel->badget->image) }}">
+                                @if($tutoriel->validation != null)
+                                    <img class="img-badge" src="{{asset( $tutoriel->badget->image) }}">
+                                @endif
                             @endforeach
                         </div>
                     </div>
@@ -37,7 +39,9 @@
                             {!! link_to_route('user.show', $auteur->name." ". $auteur->prenom , [$auteur->id], ['class' => 'link']) !!}<br/>
                             <span class="label-domaine">{{ $auteur->domaine }}</span><br/>
                             @foreach($auteur->tutoriels as $tutoriel)
-                                <img class="img-badge" src="{{asset( $tutoriel->badget->image) }}">
+                                @if($tutoriel->validation != null)
+                                    <img class="img-badge" src="{{asset( $tutoriel->badget->image) }}">
+                                @endif
                             @endforeach
                         </div>
                     </div>
@@ -55,7 +59,9 @@
                             {!! link_to_route('user.show', $auteur->name." ". $auteur->prenom , [$auteur->id], ['class' => 'link']) !!}<br/>
                             <span class="label-domaine">{{ $auteur->domaine }}</span><br/>
                             @foreach($auteur->tutoriels as $tutoriel)
-                                <img class="img-badge" src="{{asset( $tutoriel->badget->image) }}">
+                                @if($tutoriel->validation != null)
+                                    <img class="img-badge" src="{{asset( $tutoriel->badget->image) }}">
+                                @endif
                             @endforeach
                         </div>
                     </div>

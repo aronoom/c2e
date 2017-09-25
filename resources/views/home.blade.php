@@ -72,7 +72,9 @@
                         {!! link_to_route('user.show', $user->name." ". $user->prenom , [$user->id], ['class' => 'link']) !!}<br/>
                         <span class="label-domaine">{{ $user->domaine }}</span><br/>
                         @foreach($user->tutoriels as $tutoriel)
-                            <img class="img-badge" src="{{asset( $tutoriel->badget->image) }}">
+                            @if($tutoriel->validation != null)
+                                <img class="img-badge" src="{{asset( $tutoriel->badget->image) }}">
+                            @endif
                         @endforeach
                     </div>
                 </div>

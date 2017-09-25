@@ -69,13 +69,13 @@ class UserController extends Controller
     public function store(UserCreateRequest $request)
     {
         $this->setAdmin($request);
-        $password = str_random(7);
-        //$password = 'c2e1234';
+        //$password = str_random(7);
+        $password = 'c2e1234';
         $inputs = array_merge($request->all(),['image' => 'images_users/default.svg']);
         $inputs = array_merge($inputs,['type_utilisateur_id'=>Type_utilisateur::where('terme','simple')->first()->id]);
         $inputs = array_merge($inputs,compact('password'));
         $this->userRepository->store($inputs);
-        $this->sendEmailReminder($inputs['email'], $password);
+        //$this->sendEmailReminder($inputs['email'], $password);
 
         return redirect()->route('user.bienvenue');
     }

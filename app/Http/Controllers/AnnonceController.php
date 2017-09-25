@@ -110,11 +110,11 @@ class AnnonceController extends Controller
     public function destroy($id)
     {
         if(Auth::user() == Annonce::find($id)->user || Auth::user()->type_utilisateur->terme == 'admin') {
-            $this->annonceRepository->destroy($id);
             $user = Annonce::find($id)->user;
             $user->score = $user->score-6;
             $user->save();
-            return redirect('discussion')->withOk("L'annonce a été supprimé.");
+            $this->annonceRepository->destroy($id);
+            return redirect('annonce')->withOk("L'annonce a été supprimé.");
         }
         return back();
     }
